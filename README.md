@@ -2,6 +2,9 @@
     <a href="https://github.com/Maddosaurus/MLT/releases">
         <img src="https://img.shields.io/badge/status-1.0--prerelease-red.svg" alt="Status">
     </a>
+    <a href='https://mlt.readthedocs.io/en/latest/?badge=latest'>
+    <img src='https://readthedocs.org/projects/mlt/badge/?version=latest' alt='Documentation Status' />
+    </a>
     <a href="https://github.com/Maddosaurus/MLT/graphs/commit-activity">
         <img src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" alt="Maintenance">
     </a>
