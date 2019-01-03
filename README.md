@@ -21,13 +21,13 @@ If you're intersted in manually building the API documentation, run `make html` 
 You can view a local copy of the docs by running `cd docroot/_build/html && python -m http.server` from the project root.
 
 ## Requirements
-- Python 3.6
+- Python 3.6+
 - CUDA 9.1 (optional)
 
 If you plan on using GPU-accelerated learning (strongly recommended), please set up CUDA 9.1 on your system. The current version of Tensorflow relies on CUDA 9.1 (not 10!). Please refer to the [Tensorflow Install How To](https://www.tensorflow.org/install/gpu) for up to date install instructions!  
 If you are not using the deep learning potion, make sure to replace `tensorflow-gpu` with `tensorflow` in the requirements file.
 The use of a virtual environment is strongly advised!  
-All package requirements can be installed via `pipenv install` (recommended) or `pip install -U -r requirements.txt` (legacy).  
+All package requirements can be installed via `pipenv install` (add `--dev`for development dependencies).
 
 Besides these, you will need copies of the *NSL-KDD* and *CICIDS2017* datasets stored in the subfolder `datasets`. The CICIDS2017 dataset is provided by the [University of New Brunswick](http://www.unb.ca/cic/datasets/index.html), while NSL-KDD can be obtained [freely on GitHub](https://github.com/defcom17/NSL_KDD). Additional datasets can be included analogous to these.  
 
@@ -35,7 +35,7 @@ Besides these, you will need copies of the *NSL-KDD* and *CICIDS2017* datasets s
 The general workflow is:  
 1. Dataset Preparation (sanitize and pickle)
 2. Algorithm definition
-3. k-Fold Data Split, Feature Selection and Normalization/Scaling
+3. Feature Selection, optional CV spits and Normalization/Scaling
 4. Algorithm Training
 5. Result Collection and Evaluation
 
