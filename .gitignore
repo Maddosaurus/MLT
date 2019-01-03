@@ -2,9 +2,6 @@
 generate_rocs.py
 generate_fb_rocs.py
 
-# ignore mail credentials
-result_mail_credentials.py
-
 # ignore the datasets themselves
 MLT/datasets/NSL_KDD
 MLT/datasets/CICIDS2017

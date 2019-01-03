@@ -6,7 +6,7 @@
     <img src='https://readthedocs.org/projects/mlt/badge/?version=latest' alt='Documentation Status' />
     </a>
     <a href="https://github.com/Maddosaurus/MLT/graphs/commit-activity">
-        <img src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" alt="Maintenance">
+        <img src="https://img.shields.io/badge/Maintained%3F-yes-brightgreen.svg" alt="Maintenance">
     </a>
     <a href="https://github.com/Maddosaurus/MLT/pulls">
         <img src="https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat" alt="Contributions">
