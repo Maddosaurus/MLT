@@ -1,12 +1,18 @@
 <p align="center">
-    <a href="https://github.com/Maddosaurus/MLT/releases">
+    <a href="https://github.com/Maddosaurus/MLT">
         <img src="https://img.shields.io/badge/status-1.0--prerelease-red.svg" alt="Status">
     </a>
+    <a href="https://app.snyk.io/test/github/Maddosaurus/MLT?targetFile=rtd-requirements.txt">
+        <img src="https://snyk.io/test/github/Maddosaurus/MLT/badge.svg?targetFile=rtd-requirements.txt" alt="Known Vulnerabilities">
+    </a>
+</p>
+
+<p align="center">
     <a href='https://mlt.readthedocs.io/en/latest/?badge=latest'>
-    <img src='https://readthedocs.org/projects/mlt/badge/?version=latest' alt='Documentation Status' />
+        <img src='https://readthedocs.org/projects/mlt/badge/?version=latest' alt='Documentation Status' />
     </a>
     <a href="https://github.com/Maddosaurus/MLT/graphs/commit-activity">
-        <img src="https://img.shields.io/badge/Maintained%3F-yes-brightgreen.svg" alt="Maintenance">
+        <img src="https://img.shields.io/badge/maintained-yes-brightgreen.svg" alt="Maintenance">
     </a>
     <a href="https://github.com/Maddosaurus/MLT/pulls">
         <img src="https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat" alt="Contributions">
@@ -19,7 +25,7 @@ This piece of software prepares different datasets and ML algorithms as well as 
 It emerged as part of a CompSci Masters' Thesis at the University of Applied Sciences and Arts Dortmund.  
 
 ## Documentation
-The current documentation can be found at readthedocs.io.  
+The current documentation can be found at [readthedocs.io](https://mlt.readthedocs.io/en/latest/).  
 If you're intersted in manually building the API documentation, run `make html` in the `docroot` folder. This command will generate the full sphinx-doc for the project.
 You can view a local copy of the docs by running `cd docroot/_build/html && python -m http.server` from the project root.
 
