@@ -1,5 +1,5 @@
 <p align="center">
-    <a href="https://github.com/Maddosaurus/MLT">
+    <a href="https://github.com/Maddosaurus/MLT/releases">
         <img src="https://img.shields.io/badge/status-1.0--prerelease-red.svg" alt="Status">
     </a>
     <a href="https://app.snyk.io/test/github/Maddosaurus/MLT?targetFile=rtd-requirements.txt">

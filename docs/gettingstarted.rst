@@ -29,7 +29,7 @@ Minimal Working Example
 I recommend to set up the NSL_KDD dataset, as it is considerably
 small and quick to download / prepare.
 You will need `this version of NSL_KDD <https://github.com/defcom17/NSL_KDD>`_
-unpacked in the ``MLT/MLT/datasets/NSL_KDD`` folder::
+in the ``MLT/MLT/datasets/NSL_KDD`` folder::
 
     git clone https://github.com/defcom17/NSL_KDD NSL_KDD
 
