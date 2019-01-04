@@ -5,6 +5,7 @@ python:
 
 install:
   - pip install -r rtd-requirements.txt
+  - pip install codecov
 
 script:
   - pytest --cov=./
