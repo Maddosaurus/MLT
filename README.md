@@ -17,9 +17,6 @@
     <a href="https://github.com/Maddosaurus/MLT/pulls">
         <img src="https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat" alt="Contributions">
     </a>
-    <a href="https://app.snyk.io/test/github/Maddosaurus/MLT?targetFile=rtd-requirements.txt">
-        <img src="https://snyk.io/test/github/Maddosaurus/MLT/badge.svg?targetFile=rtd-requirements.txt" alt="Known Vulnerabilities">
-    </a>
 </p>
 
 
