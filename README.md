@@ -1,6 +1,6 @@
 <p align="center">
     <a href="https://github.com/Maddosaurus/MLT/graphs/commit-activity">
-        <img src="https://img.shields.io/badge/maintained-yes-brightgreen.svg" alt="Maintenance">
+        <img src="https://img.shields.io/badge/maintained-yes-brightgreen.svg" alt="Maintenance Status">
     </a>
     <a href='https://mlt.readthedocs.io/en/latest/?badge=latest'>
         <img src='https://readthedocs.org/projects/mlt/badge/?version=latest' alt='Documentation Status' />
@@ -12,7 +12,7 @@
 
 <p align="center">
     <a href="https://github.com/Maddosaurus/MLT/releases">
-        <img src="https://img.shields.io/badge/status-1.0--prerelease-red.svg" alt="Status">
+        <img src="https://img.shields.io/badge/version-1.0--prerelease-red.svg" alt="Version">
     </a>
     <a href="https://github.com/Maddosaurus/MLT/pulls">
         <img src="https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat" alt="Contributions">
