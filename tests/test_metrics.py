@@ -42,12 +42,13 @@ class TestMetricCM:
         cms = metrics_cm.calc_cm(predictions)
         np.testing.assert_array_equal(cms[3], result)
 
+    @pytest.mark.filterwarnings('ignore::RuntimeWarning')
     def test_cm_to_disk(self, predictions, target_dir):
         result = [1, 3, 2, 4]
-        
+
         cms = metrics_cm.calc_cm(predictions)
         metrics_cm.save_cm_arr_to_disk(cms, "pytest", target_dir)
-        
+
         json_path = os.path.join(target_dir, "pytest_cms.json")
         with open(json_path) as jcms:
             loaded = json.load(jcms)["absolute"]["fold4"]
