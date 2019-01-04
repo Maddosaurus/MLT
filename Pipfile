@@ -19,6 +19,7 @@ rope = "*"
 sphinx = "*"
 sphinx-rtd-theme = "*"
 pytest = "*"
+pytest-cov = "*"
 
 [requires]
 python_version = "3.6"

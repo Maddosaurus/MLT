@@ -19,6 +19,8 @@ protobuf==3.6.1
 pyod==0.6.7
 pyparsing==2.3.0
 python-dateutil==2.7.5
+pytest==3.7.3
+pytest-cov==2.6.0
 pytz==2018.7
 PyYAML==3.13
 scikit-learn==0.20.2
