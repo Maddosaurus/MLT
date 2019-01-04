@@ -9,7 +9,7 @@ import numpy as np
 def save_cm_arr_to_disk(cm_array, modelname, result_path):
     """Save the confusion array for a given model to disk as a json"""
     cms = {}
-    cms["legend"] = ['tp', 'fp', 'fn', 'tn']
+    cms["legend"] = ['tn', 'fp', 'fn', 'tp']
     cms["absolute"] = {}
     cms["relative"] = {}
 
