@@ -27,10 +27,8 @@ It emerged as part of a CompSci Masters' Thesis at the University of Applied Sci
 **It is currently in a state of prerelease and still subject to changes!**  
 **A stable release can be expected around 03/2019**
 
-## Documentation
-The current documentation can be found at [readthedocs.io](https://mlt.readthedocs.io/en/latest/).  
-If you're intersted in manually building the API documentation, run `make html` in the `docroot` folder. This command will generate the full sphinx-doc for the project.
-You can view a local copy of the docs by running `cd docroot/_build/html && python -m http.server` from the project root.
+## Getting Started
+Have a look at the [Getting Started](https://mlt.readthedocs.io/en/latest/gettingstarted.html) section in the documentation.
 
 ## Requirements
 - Python 3.6+
@@ -42,6 +40,12 @@ The use of a virtual environment is strongly advised!
 All package requirements can be installed via `pipenv install` (add `--dev` for development dependencies).
 
 Besides these, you will need copies of the *NSL-KDD* and *CICIDS2017* datasets stored in the subfolder `datasets`. The CICIDS2017 dataset is provided by the [University of New Brunswick](http://www.unb.ca/cic/datasets/index.html), while NSL-KDD can be obtained [freely on GitHub](https://github.com/defcom17/NSL_KDD). Additional datasets can be included analogous to these.  
+
+## Documentation
+The current documentation can be found at [readthedocs.io](https://mlt.readthedocs.io/en/latest/).  
+If you're intersted in manually building the API documentation, run `make html` in the `docroot` folder. This command will generate the full sphinx-doc for the project.
+You can view a local copy of the docs by running `cd docroot/_build/html && python -m http.server` from the project root.
+
 
 ## Workflow
 The general workflow is:  
@@ -55,3 +59,5 @@ The general workflow is:
 I've sticked to the scheme of doing any sanitazation in `sanitize$DATASET.py`,  
 while serialization to pickle as well as string encoding and misc stuff happens in `pickle$DATASET.py`.  
 These steps are then imported to `MLT/run.py` and can be called through switches.  
+
+

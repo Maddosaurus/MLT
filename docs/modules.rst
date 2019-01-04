@@ -1,6 +1,6 @@
 MLT Modules
 ===============
-These are the main modules of MLT.  
+These are the main modules of MLT.
 Their usage and details are explained in detail for every module.
 
 

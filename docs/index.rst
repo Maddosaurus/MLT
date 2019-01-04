@@ -8,6 +8,7 @@ MLT is the MachineLearning Testbench that has been created as part of a Masters'
 
    requirements
    principles
+   gettingstarted
    modules
 
 
