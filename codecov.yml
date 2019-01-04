@@ -1,0 +1,5 @@
+ignore:
+  - "run_benchmark.py"
+  - "setup.py"
+  - "tests/**/*"
+  - "docs/**/*"
