@@ -58,8 +58,8 @@ def list_single_score(modelname, resultpath):
     print("Acc:\t{:4.2f}".format(acc))
     
     cm = cms['absolute']['fold1']
-    tpr = (cm[0] / (cm[0] + cm[2])) * 100 # TP / (TP+FN)
-    fpr = (cm[2] / (cm[2] + cm[3])) * 100 # FP / (FP+TN)
+    tpr = (cm[3] / (cm[3] + cm[2])) * 100 # TP / (TP+FN)
+    fpr = (cm[1] / (cm[1] + cm[0])) * 100 # FP / (FP+TN)
 
     print("TPR:\t{:4.2f}\nFPR:\t{:4.2f}".format(tpr, fpr))
 
