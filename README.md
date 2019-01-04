@@ -1,21 +1,24 @@
 <p align="center">
-    <a href="https://github.com/Maddosaurus/MLT/releases">
-        <img src="https://img.shields.io/badge/status-1.0--prerelease-red.svg" alt="Status">
+    <a href="https://github.com/Maddosaurus/MLT/graphs/commit-activity">
+        <img src="https://img.shields.io/badge/maintained-yes-brightgreen.svg" alt="Maintenance">
     </a>
-    <a href="https://app.snyk.io/test/github/Maddosaurus/MLT?targetFile=rtd-requirements.txt">
-        <img src="https://snyk.io/test/github/Maddosaurus/MLT/badge.svg?targetFile=rtd-requirements.txt" alt="Known Vulnerabilities">
+    <a href='https://mlt.readthedocs.io/en/latest/?badge=latest'>
+        <img src='https://readthedocs.org/projects/mlt/badge/?version=latest' alt='Documentation Status' />
+    </a>
+    <a href='https://travis-ci.com/Maddosaurus/MLT'>
+        <img src='https://img.shields.io/travis/com/Maddosaurus/MLT.svg' alt='TravisCI Status' />
     </a>
 </p>
 
 <p align="center">
-    <a href='https://mlt.readthedocs.io/en/latest/?badge=latest'>
-        <img src='https://readthedocs.org/projects/mlt/badge/?version=latest' alt='Documentation Status' />
-    </a>
-    <a href="https://github.com/Maddosaurus/MLT/graphs/commit-activity">
-        <img src="https://img.shields.io/badge/maintained-yes-brightgreen.svg" alt="Maintenance">
+    <a href="https://github.com/Maddosaurus/MLT/releases">
+        <img src="https://img.shields.io/badge/status-1.0--prerelease-red.svg" alt="Status">
     </a>
     <a href="https://github.com/Maddosaurus/MLT/pulls">
         <img src="https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat" alt="Contributions">
+    </a>
+    <a href="https://app.snyk.io/test/github/Maddosaurus/MLT?targetFile=rtd-requirements.txt">
+        <img src="https://snyk.io/test/github/Maddosaurus/MLT/badge.svg?targetFile=rtd-requirements.txt" alt="Known Vulnerabilities">
     </a>
 </p>
 
