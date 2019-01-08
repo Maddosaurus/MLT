@@ -31,6 +31,7 @@ small and quick to download / prepare.
 You will need `this version of NSL_KDD <https://github.com/defcom17/NSL_KDD>`_
 in the ``MLT/MLT/datasets/NSL_KDD`` folder::
 
+    cd MLT/datasets
     git clone https://github.com/defcom17/NSL_KDD NSL_KDD
 
 The next step is the preparation of the pickles MLT uses::
