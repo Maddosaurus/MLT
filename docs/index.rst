@@ -25,6 +25,7 @@ University of applied Sciences and Arts, Dortmund.
    requirements
    principles
    gettingstarted
+   tests
    modules
 
 
