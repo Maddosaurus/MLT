@@ -18,6 +18,11 @@ but there are some things to consider:
 
 CUDA and cuDNN are only needed, if you plan on using tensorflow-gpu.
 If you plan on using the deep networks, I would strongly recommend to set up tensorflow-gpu, which in turn needs CUDA 9.1 and cuDNN. Please refer to the up-to-date `install guide for tensorflow-gpu <https://www.tensorflow.org/install/gpu>`_.
+Afterwards, make sure to remove the base tensorflow module and replace it with tensorflow-gpu::
+
+    pipenv uninstall tensorflow --skip-lock
+    pipenv install tensorflow-gpu
+
 
 .. warning::
     Please note that at the time of writing CUDA 9.1 is needed, insted of the latest CUDA 10, as tensorflow 1.12 depends on this!

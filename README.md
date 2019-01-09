@@ -38,7 +38,7 @@ Have a look at the [Getting Started](https://mlt.readthedocs.io/en/latest/gettin
 - CUDA 9.1 (optional)
 
 If you plan on using GPU-accelerated learning (strongly recommended), please set up CUDA 9.1 on your system. The current version of Tensorflow relies on CUDA 9.1 (not 10!). Please refer to the [Tensorflow Install How To](https://www.tensorflow.org/install/gpu) for up to date install instructions!  
-If you are not using the deep learning potion, make sure to replace `tensorflow-gpu` with `tensorflow` in the requirements file.
+If you are interested in using the GPU-accelerated deep learning potion, make sure to replace `tensorflow` with `tensorflow-gpu` in your installation.
 The use of a virtual environment is strongly advised!  
 All package requirements can be installed via `pipenv install` (add `--dev` for development dependencies).
 
