@@ -6,28 +6,32 @@ import os
 import json
 
 from .fixtures import predictions, target_dir
-from .context import metrics_base, metrics_cm
+from .context import metrics, metrics_base, metrics_cm
 
 class TestMetricBase:
     def test_acc(self, predictions):
-        assert metrics_base.calc_acc(predictions)[0] == 1
-        assert metrics_base.calc_acc(predictions)[1] == 0.6
-        assert metrics_base.calc_acc(predictions)[2] == 0.5
+        results = metrics_base.calc_acc(predictions)
+        assert results[0] == 1
+        assert results[1] == 0.6
+        assert results[2] == 0.5
 
     def test_precision(self, predictions):
-        assert metrics_base.calc_precision(predictions)[0] == 1
-        assert metrics_base.calc_precision(predictions)[1] == 1
-        assert metrics_base.calc_precision(predictions)[2] == 0.5
+        results = metrics_base.calc_precision(predictions)
+        assert results[0] == 1
+        assert results[1] == 1
+        assert results[2] == 0.5
 
     def test_recall(self, predictions):
-        assert metrics_base.calc_recall(predictions)[0] == 1
-        assert metrics_base.calc_recall(predictions)[1] == 0.6
-        assert metrics_base.calc_recall(predictions)[2] == 1
+        results = metrics_base.calc_recall(predictions)
+        assert results[0] == 1
+        assert results[1] == 0.6
+        assert results[2] == 1
 
     def test_f1(self, predictions):
-        assert metrics_base.calc_fbeta_binary(predictions, 1)[0] == 1
-        assert metrics_base.calc_fbeta_binary(predictions, 1)[1] == pytest.approx(0.75)
-        assert metrics_base.calc_fbeta_binary(predictions, 1)[2] == pytest.approx(0.667, abs=1e-3)
+        results = metrics_base.calc_fbeta_binary(predictions, 1)
+        assert results[0] == 1
+        assert results[1] == pytest.approx(0.75)
+        assert results[2] == pytest.approx(0.667, abs=1e-3)
 
     def test_sum_training_times(self, predictions):
         assert metrics_base.sum_training_times(predictions) == str(timedelta(4))
@@ -53,3 +57,8 @@ class TestMetricCM:
         with open(json_path) as jcms:
             loaded = json.load(jcms)["absolute"]["fold4"]
             np.testing.assert_array_equal(loaded, result)
+
+
+class TestMetric:
+    def test_metrics_to_disk(self, predictions, target_dir):
+        metrics.calc_metrics_and_save_to_disk(predictions[2:], "tes", target_dir)
