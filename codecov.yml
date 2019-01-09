@@ -3,6 +3,7 @@ ignore:
   - "setup.py"
   - "tests"
   - "docs"
+  - "datasets" # these cannot be tested without comitting the DSes or heavy mocking
 
 comment:
   layout: "reach, diff, flags, files"
