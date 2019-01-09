@@ -40,7 +40,7 @@ def train_model(batch_size, epochs, learning_rate, training_data, training_label
         model_savename
     )
 
-def _create_model(learning_rate):
+def _create_model(learning_rate=0.1):
     """Creates a new model with custom learn rate"""
     model = Sequential()
     model.add(Embedding(VOC_SIZE, 32))
