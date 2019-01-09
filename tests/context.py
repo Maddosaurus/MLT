@@ -10,5 +10,8 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../MLT')))
 
 import MLT
+from MLT.implementations import HBOS as mlt_hbos
+from MLT.implementations import LSTM_2_Multiclass, RandomForest, XGBoost
+
 from MLT.metrics import metrics_base, metrics_cm
 from MLT.tools import prediction_entry
