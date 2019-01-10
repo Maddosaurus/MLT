@@ -31,11 +31,24 @@ It emerged as part of a CompSci Masters' Thesis at the University of Applied Sci
 **A stable release can be expected around 03/2019**
 
 ## Getting Started
-Have a look at the [Getting Started](https://mlt.readthedocs.io/en/latest/gettingstarted.html) section in the documentation.
+Have a look at the [Getting Started](https://mlt.readthedocs.io/en/latest/gettingstarted.html) section in the documentation for a detailed guide.  
+Here is a minimal working example to check your installation:
+```bash
+git clone https://github.com/Maddosaurus/MLT
+cd MLT
+pipenv install
+cd MLT/datasets
+git clone https://github.com/defcom17/NSL_KDD NSL_KDD
+cd ..
+python run.py --pnsl
+python run.py --single --nsl --xgb 10 10 0.1
+```
+Upon completion, you should be able to find infos for the test run in your console as well as in the subfolder `results`.
 
 ## Requirements
 - Python 3.6+
 - CUDA 9.1 (optional)
+- tensorflow-gpu (optional)
 
 If you plan on using GPU-accelerated learning (strongly recommended), please set up CUDA 9.1 on your system. The current version of Tensorflow relies on CUDA 9.1 (not 10!). Please refer to the [Tensorflow Install How To](https://www.tensorflow.org/install/gpu) for up to date install instructions!  
 If you are interested in using the GPU-accelerated deep learning potion, make sure to replace `tensorflow` with `tensorflow-gpu` in your installation.
@@ -57,10 +70,3 @@ The general workflow is:
 3. Feature Selection, optional CV spits and Normalization/Scaling
 4. Algorithm Training
 5. Result Collection and Evaluation
-
-## Dataset Preparation
-I've sticked to the scheme of doing any sanitazation in `sanitize$DATASET.py`,  
-while serialization to pickle as well as string encoding and misc stuff happens in `pickle$DATASET.py`.  
-These steps are then imported to `MLT/run.py` and can be called through switches.  
-
-
