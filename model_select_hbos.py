@@ -97,6 +97,7 @@ def main():
 
     parser = MLT.run.create_parser()
     args = parser.parse_args(['--unsupervised', '-k', '10', '--nsl', '--hbos', '10', '0.1', '0.9'])
+<<<<<<< HEAD
     MLT.run.main(args)
 
 
@@ -193,6 +194,8 @@ def main():
 
     parser = MLT.run.create_parser()
     args = parser.parse_args(['--unsupervised', '-k', '10', '--cic6r', '--hbos', '10', '0.1', '0.9'])
+=======
+>>>>>>> added all values for hbos tos and alpha
     MLT.run.main(args)
 
 
