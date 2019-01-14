@@ -36,7 +36,23 @@ def main():
     MLT.run.main(args)
 
     parser = MLT.run.create_parser()
+    args = parser.parse_args(['--unsupervised', '-k', '10', '--nsl', '--hbos', '10', '0.3', '0.1'])
+    MLT.run.main(args)
+
+    parser = MLT.run.create_parser()
+    args = parser.parse_args(['--unsupervised', '-k', '10', '--nsl', '--hbos', '10', '0.4', '0.1'])
+    MLT.run.main(args)
+
+    parser = MLT.run.create_parser()
     args = parser.parse_args(['--unsupervised', '-k', '10', '--nsl', '--hbos', '10', '0.5', '0.1'])
+    MLT.run.main(args)
+
+    parser = MLT.run.create_parser()
+    args = parser.parse_args(['--unsupervised', '-k', '10', '--nsl', '--hbos', '10', '0.6', '0.1'])
+    MLT.run.main(args)
+
+    parser = MLT.run.create_parser()
+    args = parser.parse_args(['--unsupervised', '-k', '10', '--nsl', '--hbos', '10', '0.7', '0.1'])
     MLT.run.main(args)
 
     parser = MLT.run.create_parser()
@@ -44,7 +60,7 @@ def main():
     MLT.run.main(args)
 
     parser = MLT.run.create_parser()
-    args = parser.parse_args(['--unsupervised', '-k', '10', '--nsl', '--hbos', '10', '1.0', '0.1'])
+    args = parser.parse_args(['--unsupervised', '-k', '10', '--nsl', '--hbos', '10', '0.9', '0.1'])
     MLT.run.main(args)
 
 
@@ -54,7 +70,23 @@ def main():
     MLT.run.main(args)
 
     parser = MLT.run.create_parser()
+    args = parser.parse_args(['--unsupervised', '-k', '10', '--nsl', '--hbos', '10', '0.1', '0.3'])
+    MLT.run.main(args)
+
+    parser = MLT.run.create_parser()
+    args = parser.parse_args(['--unsupervised', '-k', '10', '--nsl', '--hbos', '10', '0.1', '0.4'])
+    MLT.run.main(args)
+
+    parser = MLT.run.create_parser()
     args = parser.parse_args(['--unsupervised', '-k', '10', '--nsl', '--hbos', '10', '0.1', '0.5'])
+    MLT.run.main(args)
+
+    parser = MLT.run.create_parser()
+    args = parser.parse_args(['--unsupervised', '-k', '10', '--nsl', '--hbos', '10', '0.1', '0.6'])
+    MLT.run.main(args)
+
+    parser = MLT.run.create_parser()
+    args = parser.parse_args(['--unsupervised', '-k', '10', '--nsl', '--hbos', '10', '0.1', '0.7'])
     MLT.run.main(args)
 
     parser = MLT.run.create_parser()
@@ -62,7 +94,7 @@ def main():
     MLT.run.main(args)
 
     parser = MLT.run.create_parser()
-    args = parser.parse_args(['--unsupervised', '-k', '10', '--nsl', '--hbos', '10', '0.1', '1.0'])
+    args = parser.parse_args(['--unsupervised', '-k', '10', '--nsl', '--hbos', '10', '0.1', '0.9'])
     MLT.run.main(args)
 
 
