@@ -14,7 +14,6 @@ from MLT.implementations import LSTM_2_Multiclass
 from MLT.implementations import HBOS
 
 from MLT.metrics import metrics
-from MLT.metrics import metrics_distrib
 from MLT.tools import dataset_tools
 from MLT.tools import result_mail
 from MLT.tools import toolbelt
@@ -25,69 +24,6 @@ warnings.filterwarnings(
     category=DeprecationWarning,
     message='The truth value of an empty array is ambiguous'
 )
-
-
-def NSL_6c(args):
-    """Run the benchmark for a six feature subset of NSL_KDD.
-
-    As this is a CV run, we never even touch the test partition!
-    
-    Args:
-        args (argparse.Namespace): Argument Namespace containing all parameters for the test run
-
-    Returns:
-        result_path (string): Full path where the results can be found
-    """
-    kdd_train_data, kdd_test_data, kdd_train_labels, kdd_test_labels = NSL.get_NSL_6class()
-
-    result_path = toolbelt.prepare_folders('NSL_6class_cv')
-    model_savepath = os.path.join(result_path, 'models')
-
-    # also, save parameters with which the runner was called
-    toolbelt.write_call_params(args, result_path)
-
-    # convert to numpy.ndarrays...
-    kdd_train_data = kdd_train_data.values
-
-    # ... and run the benchmark!
-    return run_benchmark(kdd_train_data, kdd_train_labels, result_path, model_savepath, args)
-
-
-def CIC_6c(args, stratified=True):
-    """Run the benchmark for a STRATIFIED six feature subset of CICIDS2017.
-
-    As this is a CV run, we never even touch the test partition!
-    
-    Args:
-        args (argparse.Namespace): Argument Namespace containing all parameters for the test run
-        stratified (boolean, (optional) default=True): Whether to use the straified or the randomized test data set
-
-    Returns:
-        result_path (string): Full path where the results can be found
-    """
-
-    cic_runnername = "CIC_6class_cv"
-
-    if stratified:
-        cic_train_data, cic_test_data, cic_train_labels, cic_test_labels = CIC_6class.get_CIC_6class_stratified()
-        cic_runnername += '-stratified'
-    else:
-        cic_train_data, cic_test_data, cic_train_labels, cic_test_labels = CIC_6class.get_CIC_6class_randomized()
-        cic_runnername += '-randomized'
-
-    result_path = toolbelt.prepare_folders(cic_runnername)
-    model_savepath = os.path.join(result_path, 'models')
-
-    # also, save parameters with which the runner was called
-    toolbelt.write_call_params(args, result_path)
-
-    # convert to numpy.ndarrays
-    cic_train_data = cic_train_data.values
-
-    # and run the benchmark!
-    return run_benchmark(cic_train_data, cic_train_labels, result_path, model_savepath, args)
-
-
 
 def run_benchmark(candidate_data, candidate_labels, result_path, model_savepath, args):
     """Run the k-fold benchmark itself.

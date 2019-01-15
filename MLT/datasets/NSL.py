@@ -28,11 +28,11 @@ def get_NSL_16class():
 def _load_nsl(column_names):
     """Loads the dataset and filters for given column names
 
-    args:
-      column_names: String-Array of column names that you want in your dataset.
+    Args:
+        column_names: String-Array of column names that you want in your dataset.
 
-    returns:
-      tuple containing (train_data, test_data, train_labels, test_labels)
+    Returns:
+        tuple containing (train_data, test_data, train_labels, test_labels)
     """
     # ## Data loading and prep
 

@@ -23,6 +23,7 @@ from MLT.datasets import pickleNSL
 from MLT.datasets import pickleCIC
 from MLT.datasets import sanitizeCIC
 from MLT.metrics import metrics_roc
+from MLT.testrunners import base_runner
 from MLT.testrunners import kfold_runner
 from MLT.testrunners import single_benchmark
 from MLT.tools import result_helper
@@ -81,27 +82,10 @@ def main(args=None):
 
     full_resultpath = ""
 
-    if args.SingleBenchmark and (args.NSL6 or args.NSL16):
-        full_resultpath = single_benchmark.run_NSL(args)
-
-    if args.SingleBenchmark and args.CIC6s:
-        full_resultpath = single_benchmark.CIC_6c(args, stratified=True)
-
-    if args.SingleBenchmark and args.CIC6r:
-        full_resultpath = single_benchmark.CIC_6c(args, stratified=False)
-
-
-    # implementations - only run benchmark if not in vote or single mode
-    if args.NSL6 and not args.SingleBenchmark:
-        full_resultpath = kfold_runner.NSL_6c(args)
-
-    if args.CIC6s and not args.SingleBenchmark:
-        full_resultpath = kfold_runner.CIC_6c(args, stratified=True)
-
-    if args.CIC6r and not args.SingleBenchmark:
-        full_resultpath = kfold_runner.CIC_6c(args, stratified=False)
-
-
+    if (args.NSL6 or args.NSL16):
+        full_resultpath = base_runner.run_NSL(args)
+    if (args.CIC6s or args.CIC6r):
+        full_resultpath = base_runner.run_CIC(args)
 
 
     # wrap up
