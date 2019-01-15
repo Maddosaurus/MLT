@@ -19,10 +19,9 @@ def test_nsl6_filter(monkeypatch, target_dir, load_mock_nsl_data, load_mock_nsl_
             return load_mock_nsl_labels
 
     def mock_os_join(dirpath, filename):
-            if 'json' in filename:
-                return target_dir + '/kdd_label_wordindex.json'
-            
-            return target_dir
+        if 'json' in filename:
+            return target_dir + '/kdd_label_wordindex.json'
+        return target_dir
 
 
     monkeypatch.setattr(dataset_tools, 'load_df', ret_df)
@@ -46,10 +45,9 @@ def test_nsl16_filter(monkeypatch, target_dir, load_mock_nsl_data, load_mock_nsl
             return load_mock_nsl_labels
 
     def mock_os_join(dirpath, filename):
-            if 'json' in filename:
-                return target_dir + '/kdd_label_wordindex.json'
-            
-            return target_dir
+        if 'json' in filename:
+            return target_dir + '/kdd_label_wordindex.json'
+        return target_dir
 
 
     monkeypatch.setattr(dataset_tools, 'load_df', ret_df)
