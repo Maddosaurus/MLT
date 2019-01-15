@@ -1,4 +1,5 @@
-"""Load the NSL_KDD dataset from the pickle and choose 6 attributes from the paper"""
+# pylint: disable=C0103
+"""Load the NSL_KDD dataset from the pickle and filter for attributes"""
 import json
 import os
 import numpy as np
@@ -9,6 +10,30 @@ NSL_FOLDER_PATH = (os.path.join(os.path.dirname(__file__), '..', 'datasets', 'NS
 
 def get_NSL_6class():
     """Load the dataset, choose 6 features and binarize the labels"""
+    used_fields = ['duration', 'protocol_type', 'src_bytes', 'dst_bytes', 'count', 'srv_count']
+    return _load_nsl(used_fields)
+
+def get_NSL_16class():
+    """Load the dataset, choose 16 features based on Iglesias & Zseby (2015) and binarize labels"""
+    used_fields = [
+        'service', 'flag', 'dst_bytes', 'wrong_fragment', 'count',
+        'serror_rate', 'srv_serror_rate', 'srv_rerror_rate', 'same_srv_rate',
+        'dst_host_count', 'dst_host_srv_count', 'dst_host_same_srv_rate', 'dst_host_diff_srv_rate',
+        'dst_host_serror_rate', 'dst_host_srv_serror_rate', 'dst_host_rerror_rate'
+    ]
+    return _load_nsl(used_fields)
+
+
+
+def _load_nsl(column_names):
+    """Loads the dataset and filters for given column names
+
+    args:
+      column_names: String-Array of column names that you want in your dataset.
+
+    returns:
+      tuple containing (train_data, test_data, train_labels, test_labels)
+    """
     # ## Data loading and prep
 
     # As we've pickled the encoded dataset,
@@ -21,9 +46,8 @@ def get_NSL_6class():
 
     # The paper mentions that they only use six features of the full dataset
     # which is why we filter the dataframes for these.
-    used_fields = ['duration', 'protocol_type', 'src_bytes', 'dst_bytes', 'count', 'srv_count']
-    kdd_train_data = kdd_train_data.filter(used_fields)
-    kdd_test_data = kdd_test_data.filter(used_fields)
+    kdd_train_data = kdd_train_data.filter(column_names)
+    kdd_test_data = kdd_test_data.filter(column_names)
 
     # ### Label translation
     # As we are doing binary classification,

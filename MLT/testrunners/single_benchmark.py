@@ -1,11 +1,9 @@
+# pylint: disable=C0103,C0301,C0326,W0703
 """This runner implements the main benchmark for qualitative analysis based on the full training and test sets."""
 import os
 import warnings
-import json
-from datetime import datetime
-from sklearn.model_selection import KFold
 
-from MLT.datasets import NSL_6class
+from MLT.datasets import NSL
 from MLT.datasets import CIC_6class
 
 from MLT.implementations import XGBoost
@@ -14,7 +12,6 @@ from MLT.implementations import LSTM_2_Multiclass
 from MLT.implementations import HBOS
 
 from MLT.metrics import metrics
-from MLT.metrics import metrics_distrib
 from MLT.tools import dataset_tools
 from MLT.tools import result_mail
 from MLT.tools import toolbelt
@@ -34,7 +31,7 @@ warnings.filterwarnings(
 )
 
 
-def NSL_6c(args):
+def run_NSL(args):
     """Run the benchmark for a six feature subset of NSL_KDD.
 
     Args:
@@ -43,11 +40,14 @@ def NSL_6c(args):
     Returns:
         result_path (string): Full path where the results can be found
     """
-    kdd_train_data, kdd_test_data, kdd_train_labels, kdd_test_labels = NSL_6class.get_NSL_6class()
+    if args.NSL6:
+        kdd_train_data, kdd_test_data, kdd_train_labels, kdd_test_labels = NSL.get_NSL_6class()
+        result_path = toolbelt.prepare_folders('NSL_6class_single')
+    elif args.NSL16:
+        kdd_train_data, kdd_test_data, kdd_train_labels, kdd_test_labels = NSL.get_NSL_16class()
+        result_path = toolbelt.prepare_folders('NSL_16class_single')
 
-    result_path = toolbelt.prepare_folders('NSL_6class_fb')
     model_savepath = os.path.join(result_path, 'models')
-
     # also, save parameters with which the runner was called
     toolbelt.write_call_params(args, result_path)
 
@@ -69,7 +69,7 @@ def CIC_6c(args, stratified=True):
     Returns:
         result_path (string): Full path where the results can be found
     """
-    cic_runnername = "CIC_6class_fb"
+    cic_runnername = "CIC_6class_single"
 
     if stratified:
         cic_train_data, cic_test_data, cic_train_labels, cic_test_labels = CIC_6class.get_CIC_6class_stratified()
@@ -107,7 +107,7 @@ def run_benchmark(train_data, train_labels, test_data, test_labels, result_path,
         result_path (str): Where to save the results
         model_savepath (str): Where to store the trainned models
         args (argparse.Namespace): Parsed CMD arguments that contain all the switches and settings
-    
+
     Returns:
         result_path (str): The path where to find the final results
     """

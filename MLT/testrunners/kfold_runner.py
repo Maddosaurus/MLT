@@ -5,7 +5,7 @@ import json
 from datetime import datetime
 from sklearn.model_selection import KFold
 
-from MLT.datasets import NSL_6class
+from MLT.datasets import NSL
 from MLT.datasets import CIC_6class
 
 from MLT.implementations import XGBoost
@@ -38,7 +38,7 @@ def NSL_6c(args):
     Returns:
         result_path (string): Full path where the results can be found
     """
-    kdd_train_data, kdd_test_data, kdd_train_labels, kdd_test_labels = NSL_6class.get_NSL_6class()
+    kdd_train_data, kdd_test_data, kdd_train_labels, kdd_test_labels = NSL.get_NSL_6class()
 
     result_path = toolbelt.prepare_folders('NSL_6class_cv')
     model_savepath = os.path.join(result_path, 'models')

@@ -81,8 +81,8 @@ def main(args=None):
 
     full_resultpath = ""
 
-    if args.SingleBenchmark and args.NSL6:
-        full_resultpath = single_benchmark.NSL_6c(args)
+    if args.SingleBenchmark and (args.NSL6 or args.NSL16):
+        full_resultpath = single_benchmark.run_NSL(args)
 
     if args.SingleBenchmark and args.CIC6s:
         full_resultpath = single_benchmark.CIC_6c(args, stratified=True)
@@ -133,9 +133,10 @@ def create_parser():
 
     # datasets
     datasets = parser.add_argument_group('Dataset Selection')
-    datasets.add_argument('--NSL6', '--nsl6', action='store_true', help='Run benchmarks on NSL_KDD with 6 subclasses')
-    datasets.add_argument('--CIC6s', '--cic6s', action='store_true', help='Run benchmarks on STRATIFIED CICIDS2017 with 6 subclasses')
-    datasets.add_argument('--CIC6r', '--cic6r', action='store_true', help='Run benchmarks on RANDOMIZED CICIDS2017 with 6 subclasses')
+    datasets.add_argument('--NSL6', '--nsl6', action='store_true', help='Run benchmarks on NSL_KDD with 6 features')
+    datasets.add_argument('--NSL16', '--nsl16', action='store_true', help='Run benchmarks on NSL_KDD with 16 features')
+    datasets.add_argument('--CIC6s', '--cic6s', action='store_true', help='Run benchmarks on STRATIFIED CICIDS2017 with 6 features')
+    datasets.add_argument('--CIC6r', '--cic6r', action='store_true', help='Run benchmarks on RANDOMIZED CICIDS2017 with 6 features')
 
     # implementations
     impls = parser.add_argument_group('Classifier Implementations')
