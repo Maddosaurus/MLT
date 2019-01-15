@@ -1,6 +1,7 @@
 # pylint: disable=redefined-outer-name,missing-docstring,unused-import,no-self-use
 import pytest
 import os
+import json
 from numpy.testing import assert_array_equal
 
 from .fixtures import target_dir, load_mock_nsl_data, load_mock_nsl_labels
@@ -17,8 +18,16 @@ def test_nsl6_filter(monkeypatch, target_dir, load_mock_nsl_data, load_mock_nsl_
         elif df_name.endswith('labels'):
             return load_mock_nsl_labels
 
+    def mock_os_join(dirpath, filename):
+            if 'json' in filename:
+                return target_dir + '/kdd_label_wordindex.json'
+            
+            return target_dir
+
+
     monkeypatch.setattr(dataset_tools, 'load_df', ret_df)
     monkeypatch.setattr(os.path, 'dirname', ret_testdir)
+    monkeypatch.setattr(os.path, 'join', mock_os_join)
 
     tr_data, te_data, tr_labels, te_labels = NSL.get_NSL_6class()
     wanted_fields = ['duration', 'protocol_type', 'src_bytes', 'dst_bytes', 'count', 'srv_count']
@@ -36,8 +45,16 @@ def test_nsl16_filter(monkeypatch, target_dir, load_mock_nsl_data, load_mock_nsl
         elif df_name.endswith('labels'):
             return load_mock_nsl_labels
 
+    def mock_os_join(dirpath, filename):
+            if 'json' in filename:
+                return target_dir + '/kdd_label_wordindex.json'
+            
+            return target_dir
+
+
     monkeypatch.setattr(dataset_tools, 'load_df', ret_df)
     monkeypatch.setattr(os.path, 'dirname', ret_testdir)
+    monkeypatch.setattr(os.path, 'join', mock_os_join)
 
     tr_data, te_data, tr_labels, te_labels = NSL.get_NSL_16class()
     wanted_fields = [

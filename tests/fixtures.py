@@ -1,6 +1,8 @@
 # pylint: disable=missing-docstring,unused-argument
 from datetime import timedelta
 import pytest
+import os
+import json
 import numpy as np
 import pandas as pd
 
@@ -35,7 +37,10 @@ def predictions():
 
 @pytest.fixture(scope='session')
 def target_dir(tmpdir_factory):
+    nsl_label_index = {"normal": 1, "neptune": 2, "warezclient": 3, "ipsweep": 4, "portsweep": 5, "teardrop": 6, "nmap": 7, "satan": 8, "smurf": 9, "pod": 10, "back": 11, "guess_passwd": 12, "ftp_write": 13, "multihop": 14, "rootkit": 15, "buffer_overflow": 16, "imap": 17, "warezmaster": 18, "phf": 19, "land": 20, "loadmodule": 21, "spy": 22, "perl": 23, "saint": 24, "mscan": 25, "apache2": 26, "snmpgetattack": 27, "processtable": 28, "httptunnel": 29, "ps": 30, "snmpguess": 31, "mailbomb": 32, "named": 33, "sendmail": 34, "xterm": 35, "worm": 36, "xlock": 37, "xsnoop": 38, "sqlattack": 39, "udpstorm": 40}
     dpath = tmpdir_factory.mktemp('data')
+    with open(os.path.join(dpath, 'kdd_label_wordindex.json'), 'w') as outfile:
+        json.dump(nsl_label_index, outfile)
     return dpath
 
 
