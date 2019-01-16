@@ -34,7 +34,6 @@ def keras_train_model(model, epochs, batch_size, training_data, training_labels,
 
     test_predictions = test_predictions_probabilities.argmax(axis=-1)
     test_predictions_probabilities = test_predictions_probabilities[:, 1]
-    # proba[:,1] returns just 1 of 2 columns. As they always add up, this is enough!
 
     keras_persist_model(model, model_savename)
 

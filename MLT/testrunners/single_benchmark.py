@@ -4,15 +4,10 @@ import os
 import warnings
 
 
-from MLT.implementations import XGBoost
-from MLT.implementations import RandomForest
-from MLT.implementations import LSTM_2_Multiclass
-from MLT.implementations import HBOS
+from MLT.implementations import Autoencoder, HBOS, LSTM_2_Multiclass, RandomForest, XGBoost
 
 from MLT.metrics import metrics
-from MLT.tools import dataset_tools
-from MLT.tools import result_mail
-from MLT.tools import toolbelt
+from MLT.tools import dataset_tools, result_mail, toolbelt
 
 # supress deprecation warning. sklearn is currently built against an older numpy version.
 warnings.filterwarnings(
@@ -50,11 +45,13 @@ def run_benchmark(train_data, train_labels, test_data, test_labels, result_path,
     withRandomForest = args.RandomForest
     withLSTM2        = args.LSTM2
     withHBOS         = args.HBOS
+    withAutoEnc      = args.AutoEncoder
 
     xgboost_stats       = []
     random_forest_stats = []
     lstm2_stats         = []
     hbos_stats          = []
+    autoenc_stats       = []
 
     # normalize and scale the data splits
     train_data, test_data = dataset_tools.normalize_and_scale(train_data, test_data)
@@ -111,7 +108,7 @@ def run_benchmark(train_data, train_labels, test_data, test_labels, result_path,
     if withHBOS:
         print("Training HBOS")
         full_filename = os.path.join(model_savepath, "HBOS")
-        random_forest_pass = HBOS.train_model(
+        hbos_pass = HBOS.train_model(
             withHBOS[0], # n_bins
             withHBOS[1], # alpha
             withHBOS[2], # tol
@@ -121,7 +118,23 @@ def run_benchmark(train_data, train_labels, test_data, test_labels, result_path,
             test_labels,
             full_filename
         )
-        hbos_stats.append(random_forest_pass)
+        hbos_stats.append(hbos_pass)
+
+    if withAutoEnc:
+        print("Training AutoEncoder")
+        full_filename = os.path.join(model_savepath, "AutoEncoder")
+        auoenc_pass = Autoencoder.train_model(
+            train_data,
+            train_labels,
+            test_data,
+            test_labels,
+            full_filename,
+            batch_size=withAutoEnc[0],    # batch
+            epochs=withAutoEnc[1],        # epochs
+            dropout_rate=withAutoEnc[2],  # dropout_rate
+            contamination=withAutoEnc[3], # contamination
+        )
+        autoenc_stats.append(auoenc_pass)
 
 
     try:
@@ -148,6 +161,11 @@ def run_benchmark(train_data, train_labels, test_data, test_labels, result_path,
     except Exception:
         print('Ran into exception while saving HBOS results to disk')
 
+    try:
+        if withAutoEnc:
+            metrics.calc_metrics_and_save_to_disk(autoenc_stats, 'AutoEncoder', result_path)
+    except Exception:
+        print('Ran into exception while saving AutoEncoder results to disk')
 
     if args.ResultMail:
         result_mail.prepare_and_send_results(result_path, args)

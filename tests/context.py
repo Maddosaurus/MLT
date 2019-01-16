@@ -14,6 +14,8 @@ import MLT
 from MLT.datasets import NSL
 
 from MLT.implementations import HBOS as mlt_hbos
+from MLT.implementations import Autoencoder as mlt_autoencoder
+
 from MLT.implementations import LSTM_2_Multiclass, RandomForest, XGBoost
 
 from MLT.metrics import metrics, metrics_base, metrics_cm

@@ -8,15 +8,10 @@ from sklearn.model_selection import KFold
 from MLT.datasets import NSL
 from MLT.datasets import CIC_6class
 
-from MLT.implementations import XGBoost
-from MLT.implementations import RandomForest
-from MLT.implementations import LSTM_2_Multiclass
-from MLT.implementations import HBOS
+from MLT.implementations import Autoencoder, HBOS, LSTM_2_Multiclass, RandomForest, XGBoost
 
 from MLT.metrics import metrics
-from MLT.tools import dataset_tools
-from MLT.tools import result_mail
-from MLT.tools import toolbelt
+from MLT.tools import dataset_tools, result_mail, toolbelt
 
 # supress deprecation warning. sklearn is currently built against an older numpy version.
 warnings.filterwarnings(
@@ -42,11 +37,13 @@ def run_benchmark(candidate_data, candidate_labels, result_path, model_savepath,
     withRandomForest = args.RandomForest
     withLSTM2        = args.LSTM2
     withHBOS         = args.HBOS
+    withAutoEnc      = args.AutoEncoder
 
     xgboost_stats       = []
     random_forest_stats = []
     lstm2_stats         = []
     hbos_stats          = []
+    autoenc_stats       = []
 
     fold_indices          = {}
     fold_indices['short'] = {}
@@ -123,7 +120,7 @@ def run_benchmark(candidate_data, candidate_labels, result_path, model_savepath,
         if withHBOS:
             print("Training HBOS")
             full_filename = os.path.join(model_savepath, "HBOS")
-            random_forest_pass = HBOS.train_model(
+            hbos_pass = HBOS.train_model(
                 withHBOS[0], # n_bins
                 withHBOS[1], # alpha
                 withHBOS[2], # tol
@@ -133,7 +130,23 @@ def run_benchmark(candidate_data, candidate_labels, result_path, model_savepath,
                 fold_test_labels,
                 full_filename
             )
-            hbos_stats.append(random_forest_pass)
+            hbos_stats.append(hbos_pass)
+
+        if withAutoEnc:
+            print("Training AutoEncoder")
+            full_filename = os.path.join(model_savepath, "AutoEncoder")
+            auoenc_pass = Autoencoder.train_model(
+                fold_train_data,
+                fold_train_labels,
+                fold_test_data,
+                fold_test_labels,
+                full_filename,
+                batch_size=withAutoEnc[0],    # batch
+                epochs=withAutoEnc[1],        # epochs
+                dropout_rate=withAutoEnc[2],  # dropout_rate
+                contamination=withAutoEnc[3], # contamination
+            )
+            autoenc_stats.append(auoenc_pass)
 
         fold_counter += 1
 
@@ -166,6 +179,11 @@ def run_benchmark(candidate_data, candidate_labels, result_path, model_savepath,
     except Exception:
         print('Ran into exception while saving HBOS results to disk')
 
+    try:
+        if withAutoEnc:
+            metrics.calc_metrics_and_save_to_disk(autoenc_stats, 'AutoEncoder', result_path)
+    except Exception:
+        print('Ran into exception while saving AutoEncoder results to disk')
 
     if args.ResultMail:
         result_mail.prepare_and_send_results(result_path, args)
