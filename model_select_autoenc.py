@@ -79,3 +79,7 @@ def main():
     parser = MLT.run.create_parser()
     args = parser.parse_args(['--unsupervised', '-k', '10', '--nsl16', '--AutoEncoder', '32', '100', '0.2', '0.5'])
     MLT.run.main(args)
+
+
+if __name__ == '__main__':
+    main()
