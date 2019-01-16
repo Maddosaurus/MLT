@@ -201,7 +201,6 @@ def main():
     # Defaults
     parser = MLT.run.create_parser()
     args = parser.parse_args(['--unsupervised', '-k', '10', '--cic6r', '--hbos', '10', '0.1', '0.1'])
-    print(args)
     MLT.run.main(args)
 
     # n_bins
