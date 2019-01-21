@@ -4,7 +4,7 @@ import os
 import warnings
 
 
-from MLT.implementations import Autoencoder, HBOS, LSTM_2_Multiclass, RandomForest, XGBoost
+from MLT.implementations import Autoencoder, HBOS, IsolationForest, LSTM_2_Multiclass, RandomForest, XGBoost
 
 from MLT.metrics import metrics
 from MLT.tools import dataset_tools, result_mail, toolbelt
@@ -46,12 +46,14 @@ def run_benchmark(train_data, train_labels, test_data, test_labels, result_path,
     withLSTM2        = args.LSTM2
     withHBOS         = args.HBOS
     withAutoEnc      = args.AutoEncoder
+    withIForest      = args.IsolationForest
 
     xgboost_stats       = []
     random_forest_stats = []
     lstm2_stats         = []
     hbos_stats          = []
     autoenc_stats       = []
+    iforest_stats       = []
 
     # normalize and scale the data splits
     train_data, test_data = dataset_tools.normalize_and_scale(train_data, test_data)
@@ -136,6 +138,22 @@ def run_benchmark(train_data, train_labels, test_data, test_labels, result_path,
         )
         autoenc_stats.append(auoenc_pass)
 
+    if withIForest:
+        print("Training Isolation Forest")
+        full_filename = os.path.join(model_savepath, "IsolationForest")
+        iforest_pass = IsolationForest.train_model(
+            train_data,
+            train_labels,
+            test_data,
+            test_labels,
+            full_filename,
+            n_estimators=withIForest[0],
+            contamination=withIForest[1],
+            max_features=withIForest[2],
+            bootstrap=withIForest[3]
+        )
+        iforest_stats.append(iforest_pass)
+
 
     try:
         if withXGBoost:
@@ -166,6 +184,13 @@ def run_benchmark(train_data, train_labels, test_data, test_labels, result_path,
             metrics.calc_metrics_and_save_to_disk(autoenc_stats, 'AutoEncoder', result_path)
     except Exception:
         print('Ran into exception while saving AutoEncoder results to disk')
+
+    try:
+        if withIForest:
+            metrics.calc_metrics_and_save_to_disk(iforest_stats, 'IsolationForest', result_path)
+    except Exception:
+        print('Ran into exception while saving IsolationForest results to disk')
+
 
     if args.ResultMail:
         result_mail.prepare_and_send_results(result_path, args)

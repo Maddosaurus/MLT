@@ -27,7 +27,7 @@ def train_model(n_bins, alpha, tol, training_data, training_labels, test_data, t
 
 
 def _create_model(n_bins=10, alpha=0.1, tol=0.1):
-    """(Internal helper) Created a HBOS instance"""
+    """(Internal helper) Create a HBOS instance"""
     n_bins = int(n_bins)
 
     hbos = HBOS(
