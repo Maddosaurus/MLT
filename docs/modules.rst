@@ -24,7 +24,7 @@ CICIDS2017
 
 NSL_KDD
 ^^^^^^^^^
-.. automodule:: MLT.datasets.NSL_6class
+.. automodule:: MLT.datasets.NSL
     :members:
 .. automodule:: MLT.datasets.sanitizeCIC
     :members:
@@ -38,14 +38,9 @@ This module contains the specific implementations to benchmark
 .. automodule:: MLT.implementations
     :members:
 
-XGBoost
+Autoencoder
 ^^^^^^^^^^^^^
-.. automodule:: MLT.implementations.XGBoost
-    :members:
-
-RandomForest
-^^^^^^^^^^^^^
-.. automodule:: MLT.implementations.RandomForest
+.. automodule:: MLT.implementations.Autoencoder
     :members:
 
 HBOS
@@ -53,10 +48,26 @@ HBOS
 .. automodule:: MLT.implementations.HBOS
     :members:
 
+IsolationForest
+^^^^^^^^^^^^^^^^^^
+.. automodule:: MLT.implementations.IsolationForest
+    :members:
+
 LSTM_2_Multiclass
 ^^^^^^^^^^^^^^^^^^^
 .. automodule:: MLT.implementations.LSTM_2_Multiclass
     :members:
+
+RandomForest
+^^^^^^^^^^^^^
+.. automodule:: MLT.implementations.RandomForest
+    :members:
+
+XGBoost
+^^^^^^^^^^^^^
+.. automodule:: MLT.implementations.XGBoost
+    :members:
+
 
 .. _mlt-metrics:
 
