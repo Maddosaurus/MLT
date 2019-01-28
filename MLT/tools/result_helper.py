@@ -45,9 +45,6 @@ def list_single_score(modelname, resultpath):
         resultpath,
         modelname+'_cms.json'
     ))
-    print("CMs:", json.dumps(cms, indent=4))
-
-    print("\n\n\n")
 
     auc = metrics['auc']['mean'] * 100
     auc_sd = metrics['auc']['sd'] * 100
