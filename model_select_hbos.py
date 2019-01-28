@@ -95,7 +95,7 @@ def main():
     MLT.run.main(args)
 
     parser = MLT.run.create_parser()
-    args = parser.parse_args(['--unsupervised', '-k', '10', '--nsl', '--hbos', '10', '0.1', '0.9'])
+    args = parser.parse_args(['--unsupervised', '-k', '10', '--nsl16', '--hbos', '10', '0.1', '0.9'])
     MLT.run.main(args)
 
 
