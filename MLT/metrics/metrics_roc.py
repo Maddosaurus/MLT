@@ -118,7 +118,7 @@ def generate_cv_roc_model_selection(modelname, result_path, parameter_name, mode
     # See https://matplotlib.org/api/_as_gen/matplotlib.pyplot.plot.html#matplotlib.pyplot.plot
     if format_list is None or len(format_list) < no_of_subs:
         print('Format not provided or not enough entries. Falling back to default\nRemember to clean old results!')
-        format_list = ['ks--', 'kv--', 'k<--', 'kp--', 'kx--', 'kd--', 'bs--', 'bv--', 'b<--', 'bp--', 'bx--', 'bd--']
+        format_list = ['ks--', 'kv--', 'k<--', 'kp--', 'kx--', 'kd--', 'rs--', 'rv--', 'r<--', 'rp--', 'rx--', 'rd--']
     if model_id_list is None or len(model_id_list) < no_of_subs:
         print('Model names not provided or not enough entries. Falling back to default\nRemember to clean old results!')
         model_id_list = []
