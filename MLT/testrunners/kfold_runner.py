@@ -2,16 +2,12 @@
 import os
 import warnings
 import json
-from datetime import datetime
 from sklearn.model_selection import KFold
-
-from MLT.datasets import NSL
-from MLT.datasets import CIC_6class
 
 from MLT.implementations import Autoencoder, HBOS, IsolationForest, LSTM_2_Multiclass, RandomForest, XGBoost
 
 from MLT.metrics import metrics
-from MLT.tools import dataset_tools, result_mail, toolbelt
+from MLT.tools import dataset_tools, result_mail
 
 # supress deprecation warning. sklearn is currently built against an older numpy version.
 warnings.filterwarnings(
