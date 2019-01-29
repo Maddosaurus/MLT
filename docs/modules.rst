@@ -15,18 +15,22 @@ Module for preparing individual datasets.
 
 CICIDS2017
 ^^^^^^^^^^^^
-.. automodule:: MLT.datasets.CIC_6class
+.. automodule:: MLT.datasets.CIC
     :members:
+    :private-members:
 .. automodule:: MLT.datasets.pickleCIC
     :members:
 .. automodule:: MLT.datasets.pickleNSL
+    :members:
+.. automodule:: MLT.datasets.sanitizeCIC
     :members:
 
 NSL_KDD
 ^^^^^^^^^
 .. automodule:: MLT.datasets.NSL
     :members:
-.. automodule:: MLT.datasets.sanitizeCIC
+    :private-members:
+.. automodule:: MLT.datasets.pickleNSL
     :members:
 
 .. _mlt-implementations:

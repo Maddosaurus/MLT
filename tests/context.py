@@ -11,7 +11,7 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../M
 
 import MLT
 
-from MLT.datasets import NSL
+from MLT.datasets import NSL, CIC
 
 from MLT.implementations import HBOS as mlt_hbos
 from MLT.implementations import Autoencoder as mlt_autoencoder

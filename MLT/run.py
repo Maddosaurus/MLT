@@ -84,7 +84,7 @@ def main(args=None):
 
     if (args.NSL6 or args.NSL16):
         full_resultpath = base_runner.run_NSL(args)
-    if (args.CIC6s or args.CIC6r):
+    if (args.CIC6s or args.CIC6r or args.CIC28):
         full_resultpath = base_runner.run_CIC(args)
 
 
@@ -121,6 +121,7 @@ def create_parser():
     datasets.add_argument('--NSL16', '--nsl16', action='store_true', help='Run benchmarks on NSL_KDD with 16 features')
     datasets.add_argument('--CIC6s', '--cic6s', action='store_true', help='Run benchmarks on STRATIFIED CICIDS2017 with 6 features')
     datasets.add_argument('--CIC6r', '--cic6r', action='store_true', help='Run benchmarks on RANDOMIZED CICIDS2017 with 6 features')
+    datasets.add_argument('--CIC28', '--cic28', action='store_true', help='Run benchmarks on extended CICIDS2017 with 28 features')
 
     # implementations
     impls = parser.add_argument_group('Classifier Implementations')
