@@ -137,6 +137,20 @@ def prepare_dataset():
     cic_data.drop(['destination_ip'], axis=1, inplace=True)
     cic_data.drop(['external_ip'], axis=1, inplace=True)
 
+    # Also, set the new fields to int, as they are to be interpreted as such
+    cic_data['source_ip_o1'] = cic_data.source_ip_o1.astype(int)
+    cic_data['source_ip_o2'] = cic_data.source_ip_o2.astype(int)
+    cic_data['source_ip_o3'] = cic_data.source_ip_o3.astype(int)
+    cic_data['source_ip_o4'] = cic_data.source_ip_o4.astype(int)
+    cic_data['destination_ip_o1'] = cic_data.destination_ip_o1.astype(int)
+    cic_data['destination_ip_o2'] = cic_data.destination_ip_o2.astype(int)
+    cic_data['destination_ip_o3'] = cic_data.destination_ip_o3.astype(int)
+    cic_data['destination_ip_o4'] = cic_data.destination_ip_o4.astype(int)
+    cic_data['external_ip_o1'] = cic_data.external_ip_o1.astype(int)
+    cic_data['external_ip_o2'] = cic_data.external_ip_o2.astype(int)
+    cic_data['external_ip_o3'] = cic_data.external_ip_o3.astype(int)
+    cic_data['external_ip_o4'] = cic_data.external_ip_o4.astype(int)
+
 
     # Now that this is out of the way, we still need to encode the labels column to numeric values.
     # To do this, I'm going to be using the Keras Tokenizer.
