@@ -43,7 +43,18 @@ def get_CIC_28class():
     return _load_cic(fields, stratified=False)
 
 
-def _load_cic(column_names, stratified=True):
+def get_CIC_Top16():
+    """Get the randomized Top 16 class subset identified by mutual_info_classif.
+
+    This needs the file 'cic_top16_indices.list' present. To generate it, call cic_feature_selection.py
+    """
+    with open(os.path.join(CIC_FOLDER_PATH, 'cic_top16_indices.list')) as handle:
+        field_ids = [int(x) for x in next(handle).split(', ')]
+    print("Loaded field_ids from file! -> {}".format(field_ids))
+    return _load_cic(field_ids, stratified=False)
+
+
+def _load_cic(columns, stratified=True):
     """Load an return the stratified 6 feature dataset as tuple
 
     Parameters
@@ -69,8 +80,12 @@ def _load_cic(column_names, stratified=True):
     cic_test_data = dataset_tools.load_df(testd, CIC_FOLDER_PATH)
     cic_test_labels = dataset_tools.load_df(testl, CIC_FOLDER_PATH)
 
-    cic_train_data = cic_train_data.filter(column_names)
-    cic_test_data = cic_test_data.filter(column_names)
+    if isinstance(columns[0], int):
+        cic_train_data = cic_train_data.iloc[:, list(columns)]
+        cic_test_data = cic_test_data.iloc[:, list(columns)]
+    elif isinstance(columns[0], str):
+        cic_train_data = cic_train_data.filter(columns)
+        cic_test_data = cic_test_data.filter(columns)
 
     # ### Label translation
     # As we are doing binary classification,
