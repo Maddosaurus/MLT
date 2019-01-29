@@ -2,7 +2,7 @@
 import os
 
 from MLT.datasets import NSL
-from MLT.datasets import CIC_6class
+from MLT.datasets import CIC
 from MLT.tools import toolbelt
 from MLT.testrunners import single_benchmark, kfold_runner
 
@@ -51,7 +51,7 @@ def run_NSL(args):
 
 
 def run_CIC(args):
-    """Run the benchmark for a (stratified or randomized) six feature subset of CICIDS2017.
+    """Run the benchmark for a feature subset of CICIDS2017.
 
     Args:
         args (argparse.Namespace): Argument Namespace containing all parameters for the test run
@@ -60,15 +60,20 @@ def run_CIC(args):
     Returns:
         result_path (string): Full path where the results can be found
     """
-    cic_runnername = "CIC_6class"
+    if args.CIC28:
+        cic_runnername = "CIC_28class"
+    else:
+        cic_runnername = "CIC_6class"
 
 
     if args.CIC6s:
-        cic_train_data, cic_test_data, cic_train_labels, cic_test_labels = CIC_6class.get_CIC_6class_stratified()
+        cic_train_data, cic_test_data, cic_train_labels, cic_test_labels = CIC.get_CIC_6class_stratified()
         cic_runnername += '-stratified'
     elif args.CIC6r:
-        cic_train_data, cic_test_data, cic_train_labels, cic_test_labels = CIC_6class.get_CIC_6class_randomized()
+        cic_train_data, cic_test_data, cic_train_labels, cic_test_labels = CIC.get_CIC_6class_randomized()
         cic_runnername += '-randomized'
+    elif args.CIC28:
+        cic_train_data, cic_test_data, cic_train_labels, cic_test_labels = CIC.get_CIC_28class()
 
     if args.SingleBenchmark:
         cic_runnername += "_single"

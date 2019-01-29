@@ -54,8 +54,11 @@ def is_bidirectional_comm(curr, prev):
 
 def prepare_dataset():
     """Base function for dataset loading and preparation.
-    Returns: 
-        A tuple consisting of (cic_data (Pandas.DataFrame), cic_labels (Pandas.DataFrame), group_list (List))
+    
+    Returns
+    --------
+        data : tuple
+            A tuple consisting of (cic_data (Pandas.DataFrame), cic_labels (Pandas.DataFrame), group_list (List))
     """
     # ## Data Loading and Prep
 
