@@ -53,9 +53,9 @@ def list_single_score(modelname, resultpath):
     acc = metrics['acc']['mean'] * 100
     acc_sd = metrics['acc']['sd'] * 100
     
-    print("AUC:\t{:4.2f} +/- {:4.2f}".format(auc, auc_sd))
-    print("F1:\t{:4.2f} +/- {:4.2f}".format(f1, f1_sd))
-    print("Acc:\t{:4.2f} +/- {:4.2f}".format(acc, acc_sd))
+    print(u"AUC:\t{:4.2f} \u00B1 {:4.2f}".format(auc, auc_sd))
+    print(u"F1:\t{:4.2f} \u00B1 {:4.2f}".format(f1, f1_sd))
+    print(u"Acc:\t{:4.2f} \u00B1 {:4.2f}".format(acc, acc_sd))
     
     cm = cms['absolute']['fold1']
     tpr = (cm[3] / (cm[3] + cm[2])) * 100 # TP / (TP+FN)
