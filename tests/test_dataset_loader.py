@@ -94,6 +94,21 @@ def test_cic6_strat(monkeypatch, target_dir, load_mock_cic_data, load_mock_cic_l
 
     assert_array_equal(tr_data.columns.values, wanted_fields)
 
+def test_cic16(monkeypatch, target_dir, load_mock_cic_data, load_mock_cic_labels):
+    tr_data = call_cic_filter(
+        CIC.get_CIC_Top16,
+        monkeypatch, target_dir,
+        load_mock_cic_data, load_mock_cic_labels
+    )
+    wanted_fields = [
+        'total_backward_packets', 'bwd_packet_length_max', 'bwd_packet_length_mean', 'flow_iat_mean',
+        'bwd_packets_per_s', 'min_packet_length', 'max_packet_length', 'packet_length_mean',
+        'ece_flag_count','average_packet_size', 'subflow_fwd_bytes', 'subflow_bwd_packets',
+        'subflow_bwd_bytes', 'idle_max', 'idle_min', 'source_ip_o1'
+    ]
+
+    assert_array_equal(tr_data.columns.values, wanted_fields)
+
 
 def test_cic28(monkeypatch, target_dir, load_mock_cic_data, load_mock_cic_labels):
     tr_data = call_cic_filter(
@@ -129,6 +144,8 @@ def call_cic_filter(filter_function, monkeypatch, target_dir, load_mock_cic_data
     def mock_os_join(dirpath, filename):
         if 'json' in filename:
             return target_dir + '/cic_label_wordindex.json'
+        elif '.list' in filename:
+            return target_dir + '/cic_top16_indices.list'
         return target_dir
 
     monkeypatch.setattr(dataset_tools, 'load_df', ret_df)
