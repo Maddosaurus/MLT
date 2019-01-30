@@ -76,7 +76,6 @@ def run_CIC(args):
         cic_runnername += '-randomized'
     elif args.CIC16:
         cic_train_data, cic_test_data, cic_train_labels, cic_test_labels = CIC.get_CIC_Top16()
-        print("Debug: New train data headers:\n{}".format(list(cic_train_data.columns.values)))
     elif args.CIC28:
         cic_train_data, cic_test_data, cic_train_labels, cic_test_labels = CIC.get_CIC_28class()
 
