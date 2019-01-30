@@ -73,7 +73,7 @@ def main():
 
     # Bootstrap
     parser = MLT.run.create_parser()
-    args = parser.parse_args(['--unsupervised', '-k', '10', '--nsl16', '--IsolationForest', '100', '0.1', '1.0', 'False'])
+    args = parser.parse_args(['--unsupervised', '-k', '10', '--nsl16', '--IsolationForest', '100', '0.1', '1.0', 'False', '--mail'])
     MLT.run.main(args)
 
 
