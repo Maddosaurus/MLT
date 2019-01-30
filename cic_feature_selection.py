@@ -49,6 +49,11 @@ def cic_select_features():
 def write_to_pickle(dataframe, filename):
     dataframe.to_pickle(os.path.join(CIC_FOLDER_PATH, filename+'.pkl'))
 
+# This yielded [7, 14, 16, 20, 41, 42, 43, 44, 54, 56, 67, 68, 69, 80, 81, 82] on combined data:
+# ['total_backward_packets', 'bwd_packet_length_max', 'bwd_packet_length_mean', 'flow_iat_mean',
+# 'bwd_packets_per_s', 'min_packet_length', 'max_packet_length', 'packet_length_mean',
+# 'ece_flag_count','average_packet_size', 'subflow_fwd_bytes', 'subflow_bwd_packets',
+# 'subflow_bwd_bytes', 'idle_max', 'idle_min', 'source_ip_o1']
 
 if __name__ == "__main__":
     cic_select_features()
