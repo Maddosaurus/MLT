@@ -29,15 +29,18 @@ def prepare_and_send_results(resultpath, args):
     if args.RandomForest:
         resultstring += '\n\nRandomForest\n'
         resultstring += toolbelt.load_result(resultpath, 'RandomForest')
-    if args.SDNDNN:
-        resultstring += '\n\nSDN-DNN\n'
-        resultstring += toolbelt.load_result(resultpath, 'SDN-DNN')
-    if args.SDNDNNa:
-        resultstring += '\n\nSDN-DNN-adap\n'
-        resultstring += toolbelt.load_result(resultpath, 'SDN-DNN-adap')
     if args.LSTM2:
         resultstring += '\n\nLSTM2\n'
         resultstring += toolbelt.load_result(resultpath, 'LSTM2C')
+    if args.HBOS:
+        resultstring += '\n\nHBOS\n'
+        resultstring += toolbelt.load_result(resultpath, 'HBOS')
+    if args.AutoEncoder:
+        resultstring += '\n\nAutoEncoder\n'
+        resultstring += toolbelt.load_result(resultpath, 'AutoEncoder')
+    if args.IsolationForest:
+        resultstring += '\n\nIsolationForest\n'
+        resultstring += toolbelt.load_result(resultpath, 'IsolationForest')
 
     resultstring += '\n\nResults can be found at {}'.format(os.path.abspath(resultpath))
 
