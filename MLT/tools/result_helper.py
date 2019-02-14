@@ -46,21 +46,27 @@ def list_single_score(modelname, resultpath):
         modelname+'_cms.json'
     ))
 
-    auc = metrics['auc']['mean'] * 100
-    auc_sd = metrics['auc']['sd'] * 100
+    try:
+        auc = metrics['auc']['mean'] * 100
+        auc_sd = metrics['auc']['sd'] * 100
+        print(u"AUC:\t{:4.2f} \u00B1 {:4.2f}".format(auc, auc_sd))
+    except KeyError:
+        pass # Might not exist!
+
     f1 = metrics['f1_score']['mean'] * 100
     f1_sd = metrics['f1_score']['sd'] * 100
     acc = metrics['acc']['mean'] * 100
     acc_sd = metrics['acc']['sd'] * 100
-    
-    print(u"AUC:\t{:4.2f} \u00B1 {:4.2f}".format(auc, auc_sd))
     print(u"F1:\t{:4.2f} \u00B1 {:4.2f}".format(f1, f1_sd))
     print(u"Acc:\t{:4.2f} \u00B1 {:4.2f}".format(acc, acc_sd))
-    
+
     cm = cms['absolute']['fold1']
     tpr = (cm[3] / (cm[3] + cm[2])) * 100 # TP / (TP+FN)
     fpr = (cm[1] / (cm[1] + cm[0])) * 100 # FP / (FP+TN)
 
     print("TPR (First Fold):\t{:4.2f}\nFPR (First Fold):\t{:4.2f}".format(tpr, fpr))
 
-    print("Mean traning time: {}".format(metrics['training_time_mean']))
+    try:
+        print("Mean traning time: {}".format(metrics['training_time_mean']))
+    except KeyError:
+        pass # Might not exist!
