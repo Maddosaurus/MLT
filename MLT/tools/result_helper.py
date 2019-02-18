@@ -53,12 +53,14 @@ def list_single_score(modelname, resultpath):
     except KeyError:
         pass # Might not exist!
 
-    f1 = metrics['f1_score']['mean'] * 100
-    f1_sd = metrics['f1_score']['sd'] * 100
-    acc = metrics['acc']['mean'] * 100
-    acc_sd = metrics['acc']['sd'] * 100
-    print(u"F1:\t{:4.2f} \u00B1 {:4.2f}".format(f1, f1_sd))
-    print(u"Acc:\t{:4.2f} \u00B1 {:4.2f}".format(acc, acc_sd))
+    print(u"F1:\t{:4.2f} \u00B1 {:4.2f}".format(
+        metrics['f1_score']['mean'] * 100, metrics['f1_score']['sd'] * 100))
+    print(u"Acc:\t{:4.2f} \u00B1 {:4.2f}".format(
+        metrics['acc']['mean'] * 100, metrics['acc']['sd'] * 100))
+    print(u"Prec:\t{:4.2f} \u00B1 {:4.2f}".format(
+        metrics['precision']['mean'] * 100, metrics['precision']['sd'] * 100))
+    print(u"Recall:\t{:4.2f} \u00B1 {:4.2f}".format(
+        metrics['recall']['mean'] * 100, metrics['recall']['sd'] * 100))
 
     cm = cms['absolute']['fold1']
     tpr = (cm[3] / (cm[3] + cm[2])) * 100 # TP / (TP+FN)
