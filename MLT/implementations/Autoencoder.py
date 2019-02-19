@@ -31,7 +31,7 @@ def train_model(
         hidden_neurons = [no_features, half_features, half_features, no_features]
         print("Built a custom neuron layout: {}".format(hidden_neurons))
 
-    if learning_rate != 1:
+    if learning_rate != 0.001:
         lrate = float(learning_rate) # FIXME: Warning - Float imperfections ahead!
         print("Custom LR. Using adam with lr = {}".format(lrate))
         optimizer = adam(lr=lrate)
