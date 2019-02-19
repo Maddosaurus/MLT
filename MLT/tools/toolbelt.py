@@ -52,8 +52,7 @@ def write_call_params(args, result_path):
     """Write the parametes with wich MLT has been called to a txt file in the result path"""
     parampath = os.path.join(result_path, 'call_parameters.txt')
     with open(parampath, 'w') as paramwriter:
-        paramwriter.write('MLT call params:\n\n')
-        paramwriter.write(str(args))
+        paramwriter.write(str(vars(args)))
         paramwriter.close()
 
 

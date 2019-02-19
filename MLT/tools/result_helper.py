@@ -20,7 +20,6 @@ def list_scores(modelname, top_resultpath):
         list_single_score(modelname, single_result_path)
 
 
-
 def list_single_score(modelname, resultpath):
     """List score of a single result in given folder.
 
@@ -39,8 +38,6 @@ def list_single_score(modelname, resultpath):
         resultpath,
         modelname+'_metrics.json'
     ))
-    print("Scores:", json.dumps(metrics, indent=4))
-
     cms = toolbelt.read_from_json(os.path.join(
         resultpath,
         modelname+'_cms.json'
@@ -49,7 +46,7 @@ def list_single_score(modelname, resultpath):
     try:
         auc = metrics['auc']['mean'] * 100
         auc_sd = metrics['auc']['sd'] * 100
-        print(u"AUC:\t{:4.2f} \u00B1 {:4.2f}".format(auc, auc_sd))
+        print(u"\nAUC:\t{:4.2f} \u00B1 {:4.2f}".format(auc, auc_sd))
     except KeyError:
         pass # Might not exist!
 
@@ -69,6 +66,6 @@ def list_single_score(modelname, resultpath):
     print("TPR (First Fold):\t{:4.2f}\nFPR (First Fold):\t{:4.2f}".format(tpr, fpr))
 
     try:
-        print("Mean traning time: {}".format(metrics['training_time_mean']))
+        print("Mean traning time: {}\nEnd of stats!\n\n".format(metrics['training_time_mean']))
     except KeyError:
         pass # Might not exist!
