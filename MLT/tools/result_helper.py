@@ -61,7 +61,7 @@ def _gen_ltx_line(modelname, resultpath):
     ))
 
     call_val_str = " & ".join(call_vals)
-    print(call_val_str + " & {:4.2f} & {:4.2f} & {:4.2f} $\pm$ {:4.2f} & {}\\".format(
+    print(call_val_str + " & {:4.2f} & {:4.2f} & {:4.2f} $\pm$ {:4.2f} & {}\\\\".format(
         metrics['precision']['mean'] * 100,
         metrics['recall']['mean'] * 100,
         metrics['f1_score']['mean'] * 100,
