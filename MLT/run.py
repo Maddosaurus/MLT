@@ -62,6 +62,9 @@ def main(args=None):
     if args.ListResults:
         result_helper.list_scores(args.ListResults[0], args.ListResults[1])
 
+    if args.GenTable:
+        result_helper.gen_ltx(args.GenTable[0], args.GenTable[1])
+
     # dataset stuff
     if args.sanitizeCIC:
         print('Sanitizing CICIDS17')
@@ -137,6 +140,7 @@ def create_parser():
     tools = parser.add_argument_group('Tools')
     tools.add_argument('--ResultMail', '--mail', action='store_true', help='Send an email with stats on completion')
     tools.add_argument('--ListResults', '--lsr', nargs=2, metavar=('modelname', 'result_path'), help="List all results in the given folder")
+    tools.add_argument('--GenTable', '--gt', nargs=2, metavar=('modelname', 'result_path'), help="Generate a LaTeX table of results in given folder")
     tools.add_argument('--GenerateCVROCs', '--gcvroc', nargs=5, metavar=('modelname', 'resultpath', 'output_filename', 'model_id_list', 'format_string_list'), help='Compile Model Selection CV results into a single ROC for given path')
     return parser
 

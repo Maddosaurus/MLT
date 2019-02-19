@@ -15,9 +15,61 @@ def list_scores(modelname, top_resultpath):
     subresults = toolbelt.list_folders(top_resultpath)
 
     for sub in subresults:
-        print("##############################")
         single_result_path = os.path.join(top_resultpath, sub)
         list_single_score(modelname, single_result_path)
+
+def gen_ltx(modelname, top_resultpath):
+    """Generate a LaTeX table from metrics.json in every subfolder with the call_params, if existing.
+
+    Args:
+        modelname (str): Name of the model to evaluate. Used to derive filenames.
+        top_resultpath (str): Path to the parent folder with all subresults
+    """
+    subresults = toolbelt.list_folders(top_resultpath)
+
+    for sub in subresults:
+        single_result_path = os.path.join(top_resultpath, sub)
+        _gen_ltx_line(modelname, single_result_path)
+
+
+def _gen_ltx_line(modelname, resultpath):
+    """List score of a single result in given folder as LaTeX compatible table.
+
+    Args:
+        modelname (str): Name of the model to evaluate. Used to derive filenames.
+        resultpath (str): Path to the folder with a test run result
+    """
+    try:
+        with open(os.path.join(resultpath, 'call_parameters.txt')) as cparms:
+            call_vals = None
+            for line in cparms:
+                try:
+                    call_vals = line.split('[')[1].split(']')[0].replace("'", "")
+                    call_vals = call_vals.split(', ')
+                except IndexError:
+                    pass # TODO: Find a more efficient alternative
+    except FileNotFoundError:
+        pass
+    
+    metrics = toolbelt.read_from_json(os.path.join(
+        resultpath,
+        modelname+'_metrics.json'
+    ))
+    cms = toolbelt.read_from_json(os.path.join(
+        resultpath,
+        modelname+'_cms.json'
+    ))
+
+    print("{} & {} & {} & {:4.2f} & {:4.2f} & {:4.2f} $\pm$ {:4.2f} & {}\\".format(
+        call_vals[0],
+        call_vals[1],
+        call_vals[2],
+        metrics['precision']['mean'] * 100,
+        metrics['recall']['mean'] * 100,
+        metrics['f1_score']['mean'] * 100,
+        metrics['f1_score']['sd'] * 100,
+        metrics['training_time_mean']
+    ))
 
 
 def list_single_score(modelname, resultpath):
