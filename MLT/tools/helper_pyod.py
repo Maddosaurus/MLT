@@ -21,7 +21,6 @@ def pyod_train_model(model, training_data, training_labels, test_data, test_labe
     test_predictions = model.predict(test_data)
     test_predictions_probabilities = model.predict_proba(test_data)[:, 1]
 
-    pyod_persist_model(model, model_savename)
     return pe.PredictionEntry(test_labels, test_predictions, test_predictions_probabilities, runtime)
 
 

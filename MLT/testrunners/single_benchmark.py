@@ -3,7 +3,6 @@
 import os
 import warnings
 
-
 from MLT.implementations import Autoencoder, HBOS, IsolationForest, LSTM_2_Multiclass, RandomForest, XGBoost
 
 from MLT.metrics import metrics
@@ -135,6 +134,7 @@ def run_benchmark(train_data, train_labels, test_data, test_labels, result_path,
             epochs=withAutoEnc[1],        # epochs
             dropout_rate=withAutoEnc[2],  # dropout_rate
             contamination=withAutoEnc[3], # contamination
+            learning_rate=withAutoEnc[4]  # learning rate
         )
         autoenc_stats.append(auoenc_pass)
 
