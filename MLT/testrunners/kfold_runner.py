@@ -143,6 +143,7 @@ def run_benchmark(candidate_data, candidate_labels, result_path, model_savepath,
                 epochs=withAutoEnc[1],        # epochs
                 dropout_rate=withAutoEnc[2],  # dropout_rate
                 contamination=withAutoEnc[3], # contamination
+                learning_rate=withAutoEnc[4]  # learning rate
             )
             autoenc_stats.append(auoenc_pass)
 

@@ -1,5 +1,6 @@
 """AutoEncoder pyod implementation based on Aggarwal, C.C. (2015)"""
 from pyod.models.auto_encoder import AutoEncoder
+from keras.optimizers import adam
 import numpy as np
 
 from MLT.tools.helper_pyod import pyod_train_model
@@ -10,10 +11,13 @@ def train_model(
         hidden_neurons=None, hidden_activation='relu', output_activation='sigmoid',
         optimizer='adam', epochs=100, batch_size=32, dropout_rate=0.2,
         l2_regularizer=0.1, validation_size=0.1, preprocessing=True,
-        verbose=2, random_state=42, contamination=0.1):
+        verbose=2, random_state=42, contamination=0.1, learning_rate=0.001):
     """Created and trains a Autoencoder instance with given params.
     See https://pyod.readthedocs.io/en/latest/pyod.models.html#module-pyod.models.auto_encoder
 
+    The call is slightly extended in regard to the PyOD version:
+    If no hidden_neuron-list is provided, a custom one is generated with a bottleneck of half the feature count.
+    Also, if a custom learning rate is provided, an adam optimizer with that lr is used instead of the defaults.
 
     Returns:
         PredictionEntry: Named tuple with training results
@@ -26,6 +30,11 @@ def train_model(
         half_features = int(round(no_features/2))
         hidden_neurons = [no_features, half_features, half_features, no_features]
         print("Built a custom neuron layout: {}".format(hidden_neurons))
+
+    if learning_rate != 1:
+        lrate = float(learning_rate) # FIXME: Warning - Float imperfections ahead!
+        print("Custom LR. Using adam with lr = {}".format(lrate))
+        optimizer = adam(lr=lrate)
 
     return pyod_train_model(
         _create_model(
