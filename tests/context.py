@@ -21,7 +21,7 @@ from MLT.implementations import LSTM_2_Multiclass, RandomForest, XGBoost
 
 from MLT.metrics import metrics, metrics_base, metrics_cm
 
-from MLT.testrunners import single_benchmark
+from MLT.testrunners import single_benchmark, kfold_runner, base_runner
 
 from MLT.tools import dataset_tools, prediction_entry
 
