@@ -55,7 +55,7 @@ If you are interested in using the GPU-accelerated deep learning potion, make su
 The use of a virtual environment is strongly advised!  
 All package requirements can be installed via `pipenv install` (add `--dev` for development dependencies).
 
-Besides these, you will need copies of the *NSL-KDD* and *CICIDS2017* datasets stored in the subfolder `datasets`. The CICIDS2017 dataset is provided by the [University of New Brunswick](http://www.unb.ca/cic/datasets/index.html), while NSL-KDD can be obtained [freely on GitHub](https://github.com/defcom17/NSL_KDD). Additional datasets can be included analogous to these.  
+Besides these, you will need copies of the *NSL-KDD* and *CICIDS2017* datasets stored in the subfolder `datasets` (`/NSL_KDD` and `/CICIDS2017pub`). The CICIDS2017 dataset can be downloaded at the [University of New Brunswick](http://www.unb.ca/cic/datasets/index.html), while NSL-KDD can be obtained [on GitHub](https://github.com/defcom17/NSL_KDD). Additional datasets can be included analogous to these.  
 
 ## Documentation
 The current documentation can be found at [readthedocs.io](https://mlt.readthedocs.io/en/latest/).  

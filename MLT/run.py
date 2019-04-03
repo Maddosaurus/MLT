@@ -1,4 +1,4 @@
-#! /usr/bin/env python
+#!/usr/bin/env python
 """Main entrypoint and CLI interface for MLT"""
 
 # pylint: disable=C0301,C0413
@@ -21,11 +21,8 @@ matplotlib.use('Agg')
 # import the MLT-relevant parts
 from MLT.datasets import pickleNSL
 from MLT.datasets import pickleCIC
-from MLT.datasets import sanitizeCIC
 from MLT.metrics import metrics_roc
 from MLT.testrunners import base_runner
-from MLT.testrunners import kfold_runner
-from MLT.testrunners import single_benchmark
 from MLT.tools import result_helper
 
 
@@ -66,16 +63,8 @@ def main(args=None):
         result_helper.gen_ltx(args.GenTable[0], args.GenTable[1])
 
     # dataset stuff
-    if args.sanitizeCIC:
-        print('Sanitizing CICIDS17')
-        sanitizeCIC.sanitize_CICIDS2017()
-
-    if args.pickleCICs:
-        print('Stratified Pickle CICIDS2017!')
-        pickleCIC.pickleCIC_stratified()
-
-    if args.pickleCICr:
-        print('Randomized Pickle CICIDS2017!')
+    if args.pickleCIC:
+        print('Pickle CICIDS2017!')
         pickleCIC.pickleCIC_randomized()
 
     if args.pickleNSL:
@@ -87,7 +76,7 @@ def main(args=None):
 
     if (args.NSL6 or args.NSL16):
         full_resultpath = base_runner.run_NSL(args)
-    if (args.CIC6s or args.CIC6r or args.CIC16 or args.CIC28):
+    if (args.CIC20):
         full_resultpath = base_runner.run_CIC(args)
 
 
@@ -114,18 +103,13 @@ def create_parser():
     # dataset utils
     dsutils = parser.add_argument_group('Dataset Preparations and Utilities')
     dsutils.add_argument('--pickleNSL', '--pnsl', action='store_true', help='Create a pickle out of the NSL_KDD dataset')
-    dsutils.add_argument('--pickleCICs', '--pcics', action='store_true', help='Create a STRATIFIED pickle out of the CICIDS2017 dataset')
-    dsutils.add_argument('--pickleCICr', '--pcicr', action='store_true', help='Create a RANDOMIZED pickle out of the CICIDS2017 dataset')
-    dsutils.add_argument('--sanitizeCIC', '--scic', action='store_true', help='Sanitize CICIDS17 and write to _clean.csv')
+    dsutils.add_argument('--pickleCIC', '--pcic', action='store_true', help='Create a pickle out of the public CICIDS2017 dataset')
 
     # datasets
     datasets = parser.add_argument_group('Dataset Selection')
     datasets.add_argument('--NSL6', '--nsl6', action='store_true', help='Run benchmarks on NSL_KDD with 6 features')
     datasets.add_argument('--NSL16', '--nsl16', action='store_true', help='Run benchmarks on NSL_KDD with 16 features')
-    datasets.add_argument('--CIC6s', '--cic6s', action='store_true', help='Run benchmarks on STRATIFIED CICIDS2017 with 6 features')
-    datasets.add_argument('--CIC6r', '--cic6r', action='store_true', help='Run benchmarks on RANDOMIZED CICIDS2017 with 6 features')
-    datasets.add_argument('--CIC16', '--cic16', action='store_true', help='Run benchmarks on extended CICIDS2017 with 16 features')
-    datasets.add_argument('--CIC28', '--cic28', action='store_true', help='Run benchmarks on extended CICIDS2017 with 28 features')
+    datasets.add_argument('--CIC20', '--cic20', action='store_true', help='Run benchmarks on public CICIDS2017 with 20 features')
 
     # implementations
     impls = parser.add_argument_group('Classifier Implementations')
