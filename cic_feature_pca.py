@@ -2,6 +2,7 @@ import os
 import sys
 
 from sklearn.feature_selection import SelectKBest, mutual_info_classif
+from sklearn import decomposition
 import pandas as pd
 
 sys.path.insert(0, os.path.abspath('./MLT'))
@@ -29,15 +30,10 @@ def cic_select_features():
     print(cic_data.columns.values)
     print("Column count original: {}".format(len(cic_data.columns.values)))
 
-    selector = SelectKBest(mutual_info_classif, k=16)
-    selector.fit(cic_data, cic_labels.label_encoded.values.ravel())
+    pca = decomposition.PCA(n_components=16)
+    pca.fit(cic_data)
+    cic_16_test_data = pca.transform(cic_data)
 
-    columns_int = selector.get_support(indices=True)
-    with open(os.path.join(CIC_FOLDER_PATH, 'cic_top16_indices.list'), 'w') as handle:
-        handle.write(", ".join(str(x) for x in columns_int))
-
-    columns = selector.get_support()
-    cic_16_test_data = cic_test_data.iloc[:, list(columns)]
     print(cic_16_test_data.head())
     print("Column count new: {}".format(len(cic_16_test_data.columns.values)))
 
