@@ -13,7 +13,6 @@ def list_scores(modelname, top_resultpath):
         top_resultpath (str): Path to the parent folder with all subresults
     """
     subresults = toolbelt.list_folders(top_resultpath)
-
     for sub in subresults:
         single_result_path = os.path.join(top_resultpath, sub)
         list_single_score(modelname, single_result_path)
@@ -25,11 +24,18 @@ def gen_ltx(modelname, top_resultpath):
         modelname (str): Name of the model to evaluate. Used to derive filenames.
         top_resultpath (str): Path to the parent folder with all subresults
     """
+    print("\n% algo call params\t    precision & recall & F1   +/-  F1.sd & runtime")
+
+
     subresults = toolbelt.list_folders(top_resultpath)
 
     for sub in subresults:
         single_result_path = os.path.join(top_resultpath, sub)
-        _gen_ltx_line(modelname, single_result_path)
+        try:
+            _gen_ltx_line(modelname, single_result_path)
+        except FileNotFoundError:
+            #print("No fitting metrics file found in folder {}".format(single_result_path))
+            pass
 
 
 def _gen_ltx_line(modelname, resultpath):
@@ -61,12 +67,13 @@ def _gen_ltx_line(modelname, resultpath):
     ))
 
     call_val_str = " & ".join(call_vals)
-    print(call_val_str + " & {:4.2f} & {:4.2f} & {:4.2f} $\pm$ {:4.2f} & {}\\\\".format(
+    print(call_val_str + " & {:4.2f} & {:4.2f} & {:4.2f} $\pm$ {:4.2f} & {}\\\\ % {}".format(
         metrics['precision']['mean'] * 100,
         metrics['recall']['mean'] * 100,
         metrics['f1_score']['mean'] * 100,
         metrics['f1_score']['sd'] * 100,
-        metrics['training_time_mean']
+        metrics['training_time_mean'],
+        os.path.basename(resultpath)
     ))
 
 
