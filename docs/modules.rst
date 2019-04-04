@@ -22,8 +22,6 @@ CICIDS2017
     :members:
 .. automodule:: MLT.datasets.pickleNSL
     :members:
-.. automodule:: MLT.datasets.sanitizeCIC
-    :members:
 
 NSL_KDD
 ^^^^^^^^^
@@ -32,6 +30,7 @@ NSL_KDD
     :private-members:
 .. automodule:: MLT.datasets.pickleNSL
     :members:
+    :private-members:
 
 .. _mlt-implementations:
 
