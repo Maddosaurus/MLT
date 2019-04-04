@@ -55,7 +55,12 @@ def run_benchmark(train_data, train_labels, test_data, test_labels, result_path,
     iforest_stats       = []
 
     # normalize and scale the data splits
-    train_data, test_data = dataset_tools.normalize_and_scale(train_data, test_data)
+    #train_data, test_data = dataset_tools.min_max_scale(train_data, test_data)
+    train_data, test_data = dataset_tools.powertransform_yeoJohnson(train_data, test_data)
+    #train_data, test_data = dataset_tools.abs_scaler(train_data, test_data)
+    #train_data, test_data = dataset_tools.standard_scale(train_data, test_data)
+    #train_data, test_data = dataset_tools.prin_com_analysis(train_data, test_data)
+
 
     if args.unsupervised:
         train_labels = None # Pass empty train labels
@@ -113,6 +118,7 @@ def run_benchmark(train_data, train_labels, test_data, test_labels, result_path,
             withHBOS[0], # n_bins
             withHBOS[1], # alpha
             withHBOS[2], # tol
+            withHBOS[3], # contamination
             train_data,
             train_labels,
             test_data,

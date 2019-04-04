@@ -3,7 +3,7 @@ from pyod.models.hbos import HBOS
 
 from MLT.tools.helper_pyod import pyod_train_model
 
-def train_model(n_bins, alpha, tol, training_data, training_labels, test_data, test_labels, full_filename):
+def train_model(n_bins, alpha, tol, contamination, training_data, training_labels, test_data, test_labels, full_filename):
     """Created and trains a HBOS instance with given params
 
     Args:
@@ -19,21 +19,22 @@ def train_model(n_bins, alpha, tol, training_data, training_labels, test_data, t
         PredictionEntry: Named tuple with training results
     """
     return pyod_train_model(
-        _create_model(n_bins, alpha, tol),
+        _create_model(n_bins, alpha, tol, contamination),
         training_data, training_labels,
         test_data, test_labels,
         full_filename
     )
 
 
-def _create_model(n_bins=10, alpha=0.1, tol=0.1):
+def _create_model(n_bins=10, alpha=0.1, tol=0.1, contamination=0.1):
     """(Internal helper) Create a HBOS instance"""
     n_bins = int(n_bins)
 
     hbos = HBOS(
         n_bins=n_bins,
         alpha=alpha,
-        tol=tol
+        tol=tol,
+        contamination=contamination
     )
 
     return hbos
