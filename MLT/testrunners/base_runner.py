@@ -62,10 +62,14 @@ def run_CIC(args):
     """
     if args.CIC20:
         cic_runnername = "CIC_20class"
-
-
-    if args.CIC20:
         cic_train_data, cic_test_data, cic_train_labels, cic_test_labels = CIC.get_CIC_Top20()
+    elif args.CIC:
+        cic_runnername = "CIC"
+        cic_train_data, cic_test_data, cic_train_labels, cic_test_labels = CIC.get_CIC()
+    elif args.CICt:
+        cic_runnername = "CIC_transformed"
+        cic_train_data, cic_test_data, cic_train_labels, cic_test_labels = CIC.get_CIC(transformed=True)
+
 
     if args.SingleBenchmark:
         cic_runnername += "_single"

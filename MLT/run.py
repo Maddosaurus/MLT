@@ -76,7 +76,7 @@ def main(args=None):
 
     if (args.NSL6 or args.NSL16):
         full_resultpath = base_runner.run_NSL(args)
-    if (args.CIC20):
+    if (args.CIC20 or args.CIC or args.CICt):
         full_resultpath = base_runner.run_CIC(args)
 
 
@@ -110,13 +110,15 @@ def create_parser():
     datasets.add_argument('--NSL6', '--nsl6', action='store_true', help='Run benchmarks on NSL_KDD with 6 features')
     datasets.add_argument('--NSL16', '--nsl16', action='store_true', help='Run benchmarks on NSL_KDD with 16 features')
     datasets.add_argument('--CIC20', '--cic20', action='store_true', help='Run benchmarks on public CICIDS2017 with 20 features')
+    datasets.add_argument('--CIC', '--cic', action='store_true', help='Run benchmarks on full public CICIDS2017')
+    datasets.add_argument('--CICt', '--cict', action='store_true', help='Run benchmarks on pretransformed full public CICIDS2017')
 
     # implementations
     impls = parser.add_argument_group('Classifier Implementations')
     impls.add_argument('--XGBoost', '--xgb', type=float, nargs=3, metavar=('estimators', 'max_depth', 'lr'), help='Run benchmark on XGBoost. Params: # of estimators and max_depth')
     impls.add_argument('--RandomForest', '--rf', type=float, nargs=2, metavar=('estimators', 'max_depth'), help='Run benchmark on Random Forest. Params: # of estimators and max_depth')
     impls.add_argument('--LSTM2', '--lstm2', type=float, nargs=3, metavar=('batch', 'epochs', 'lr'), help='Run benchmark on a custom 2-class-LSTM')
-    impls.add_argument('--HBOS', '--hbos', type=float, nargs=4, metavar=('n_bins', 'alpha', 'tol, contamination'), help='Run benchmark on HBOS')
+    impls.add_argument('--HBOS', '--hbos', type=float, nargs=3, metavar=('n_bins', 'alpha', 'tol'), help='Run benchmark on HBOS')
     impls.add_argument('--AutoEncoder', '--ae', type=float, nargs=5, metavar=('batch', 'epochs', 'dropout_rate', 'contamination', 'learning_rate'), help='Run benchmark on AutoEncoder')
     impls.add_argument('--IsolationForest', '--if', nargs=4, metavar=('n_estimators', 'contamination', 'max_features', 'bootstrap'), help='Run benchmark on IsolationForest')
 

@@ -16,23 +16,25 @@ def get_CIC_Top20():
     fields = [0, 3, 4, 5, 9, 11, 12, 17, 19, 22, 36, 37, 38, 39, 49, 51, 54, 56, 57, 58]
     return _load_cic(fields)
 
+def get_CIC(transformed=False):
+    return _load_cic(transformed=transformed)
 
-def _load_cic(columns):
-    """Load an return the feature dataset as tuple
 
-    Parameters
-    ----------
-        columns : list[string] or list[int]
-            List of columns to keep from the full dataset
+def _load_cic(columns=None, transformed=False):
+    """Load an return the feature dataset as tuple.
 
-    Returns
-    -------
-        data : tuple
-            A tuple containing the filtered train- and test-data and -labels
+    Args:
+        columns (list[int] or lsit[string], optional): List of columns to keep from the full dataset
+        transformed (bool, optional): Whether to use a PowerTransformed version of the dataset
+
+    Returns:
+        data (tuple): A tuple containing train- and test-data and -labels
     """
     ## Data loading and prep
-    traind, trainl, testd, testl = 'cic_train_data_rand', 'cic_train_labels_rand', 'cic_test_data_rand', 'cic_test_labels_rand'
-
+    if transformed:
+        traind, trainl, testd, testl = 'cic_train_data_rand_yj', 'cic_train_labels_rand_yj', 'cic_test_data_rand_yj', 'cic_test_labels_rand_yj'
+    else:
+        traind, trainl, testd, testl = 'cic_train_data_rand', 'cic_train_labels_rand', 'cic_test_data_rand', 'cic_test_labels_rand'
     # As we've pickled the encoded dataset,
     # we only need to load these pickles to get the Pandas DataFrames back.
     cic_train_data = dataset_tools.load_df(traind, CIC_FOLDER_PATH)
@@ -40,12 +42,13 @@ def _load_cic(columns):
     cic_test_data = dataset_tools.load_df(testd, CIC_FOLDER_PATH)
     cic_test_labels = dataset_tools.load_df(testl, CIC_FOLDER_PATH)
 
-    if isinstance(columns[0], int):
-        cic_train_data = cic_train_data.iloc[:, list(columns)]
-        cic_test_data = cic_test_data.iloc[:, list(columns)]
-    elif isinstance(columns[0], str):
-        cic_train_data = cic_train_data.filter(columns)
-        cic_test_data = cic_test_data.filter(columns)
+    if columns is not None:
+        if isinstance(columns[0], int):
+            cic_train_data = cic_train_data.iloc[:, list(columns)]
+            cic_test_data = cic_test_data.iloc[:, list(columns)]
+        elif isinstance(columns[0], str):
+            cic_train_data = cic_train_data.filter(columns)
+            cic_test_data = cic_test_data.filter(columns)
 
     # ### Label translation
     # As we are doing binary classification,

@@ -49,6 +49,7 @@ def run_benchmark(candidate_data, candidate_labels, result_path, model_savepath,
 
     fold_counter = 1
 
+
     # k-fold Crossval. Split into k-1 training and 1 test part - repeat k times.
     kfold = KFold(n_splits=kfold_count)
     for train, test in kfold.split(candidate_data):
@@ -62,9 +63,6 @@ def run_benchmark(candidate_data, candidate_labels, result_path, model_savepath,
 
         if args.unsupervised:
             fold_train_labels = None # Pass empty train labels
-
-        # normalize and scale the data splits
-        fold_train_data, fold_test_data = dataset_tools.normalize_and_scale(fold_train_data, fold_test_data)
 
         # now fit the models
         print('\nBeginning training pass {:2d}/{}'.format(fold_counter, kfold_count))

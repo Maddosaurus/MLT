@@ -2,6 +2,7 @@
 """This runner implements the main benchmark for qualitative analysis based on the full training and test sets."""
 import os
 import warnings
+import numpy as np
 
 from MLT.implementations import Autoencoder, HBOS, IsolationForest, LSTM_2_Multiclass, RandomForest, XGBoost
 
@@ -54,13 +55,9 @@ def run_benchmark(train_data, train_labels, test_data, test_labels, result_path,
     autoenc_stats       = []
     iforest_stats       = []
 
-    # normalize and scale the data splits
-    #train_data, test_data = dataset_tools.min_max_scale(train_data, test_data)
-    train_data, test_data = dataset_tools.powertransform_yeoJohnson(train_data, test_data)
-    #train_data, test_data = dataset_tools.abs_scaler(train_data, test_data)
-    #train_data, test_data = dataset_tools.standard_scale(train_data, test_data)
-    #train_data, test_data = dataset_tools.prin_com_analysis(train_data, test_data)
-
+    outliers_fraction = np.count_nonzero(train_labels) / len(train_labels)
+    outliers_percentage = round(outliers_fraction * 100, ndigits=4)
+    print("Outlier Percentage:", outliers_percentage)
 
     if args.unsupervised:
         train_labels = None # Pass empty train labels
@@ -118,7 +115,7 @@ def run_benchmark(train_data, train_labels, test_data, test_labels, result_path,
             withHBOS[0], # n_bins
             withHBOS[1], # alpha
             withHBOS[2], # tol
-            withHBOS[3], # contamination
+            outliers_fraction, # contamination
             train_data,
             train_labels,
             test_data,
