@@ -63,7 +63,7 @@ def abs_scaler(train_data, test_data):
     return train_data, test_data
 
 
-def powertransform_yeoJohnson(train_data, test_data):
+def powertransform_yeoJohnson(train_data, test_data=None):
     """Transforms given datasets with a Yeo Johnson Powertransform.
 
     This transformer will train on the training set and then scale both sets, training and test.
@@ -81,9 +81,12 @@ def powertransform_yeoJohnson(train_data, test_data):
     pt.fit(train_data)
 
     train_data = pt.transform(train_data)
-    test_data = pt.transform(test_data)
 
-    return train_data, test_data
+    if test_data is not None:
+        test_data = pt.transform(test_data)
+        return train_data, test_data
+
+    return train_data
 
 # load pandas df pickles from disk
 def load_df(filename, folderpath):
