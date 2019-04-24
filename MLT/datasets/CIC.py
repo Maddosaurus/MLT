@@ -1,78 +1,40 @@
 """Load the CICIDS2017 dataset from the pickle and filter features"""
 import os
-import json
 import numpy as np
 from MLT.tools import dataset_tools
 
 # Where to load the dataset pickles from
-CIC_FOLDER_PATH = (os.path.join(os.path.dirname(__file__), '..', 'datasets', 'CICIDS2017'))
+CIC_FOLDER_PATH = (os.path.join(os.path.dirname(__file__), '..', 'datasets', 'CICIDS2017pub'))
 
+def get_CIC_Top20():
+    """Get the randomized Top 20 class subset identified by mutual_info_classif.
 
-def get_CIC_6class_stratified():
-    """Load the stratified 6 class subset of CICIDS2017."""
-    fields = [
-        'flow_duration', 'protocol',
-        'total_fwd_packets', 'total_backward_packets',
-        'flow_packets_per_s', 'destination_port'
-    ]
-    return _load_cic(fields, stratified=True)
-
-
-def get_CIC_6class_randomized():
-    """Load the randomized 6 class subset of CICIDS2017."""
-    fields = [
-        'flow_duration', 'protocol',
-        'total_fwd_packets', 'total_backward_packets',
-        'flow_packets_per_s', 'destination_port'
-    ]
-    return _load_cic(fields, stratified=False)
-
-
-def get_CIC_28class():
-    """Get the extended randomized 28 class subset of CICIDS2017"""
-    fields = [
-        'source_port', 'destination_port', 'protocol', 'total_fwd_packets',
-        'total_backward_packets', 'flow_packets_per_s',
-        'fin_flag_count', 'syn_flag_count', 'rst_flag_count', 'psh_flag_count',
-        'ack_flag_count', 'urg_flag_count', 'cwe_flag_count', 'ece_flag_count',
-        'down_per_up_ratio', 'average_packet_size',
-        'source_ip_o1', 'source_ip_o2', 'source_ip_o3', 'source_ip_o4',
-        'destination_ip_o1', 'destination_ip_o2', 'destination_ip_o3', 'destination_ip_o4',
-        'external_ip_o1', 'external_ip_o2', 'external_ip_o3', 'external_ip_o4'
-    ]
-    return _load_cic(fields, stratified=False)
-
-
-def get_CIC_Top16():
-    """Get the randomized Top 16 class subset identified by mutual_info_classif.
-
-    This needs the file 'cic_top16_indices.list' present. To generate it, call cic_feature_selection.py
+    To generate these fields, call cic_feature_selection.py
     """
-    with open(os.path.join(CIC_FOLDER_PATH, 'cic_top16_indices.list')) as handle:
-        field_ids = [int(x) for x in next(handle).split(', ')]
-    print("Loaded field_ids from file! -> {}".format(field_ids))
-    return _load_cic(field_ids, stratified=False)
+    # These were generated / found by running cic_feature_select
+    # with Mutual Info Classif
+    fields = [0, 3, 4, 5, 9, 11, 12, 17, 19, 22, 36, 37, 38, 39, 49, 51, 54, 56, 57, 58]
+    return _load_cic(fields)
+
+def get_CIC(transformed=False):
+    return _load_cic(transformed=transformed)
 
 
-def _load_cic(columns, stratified=True):
-    """Load an return the stratified 6 feature dataset as tuple
+def _load_cic(columns=None, transformed=False):
+    """Load an return the feature dataset as tuple.
 
-    Parameters
-    ----------
-        stratified : bool, optional (default=True)
-            Whether to use stratified or randomized sampling
+    Args:
+        columns (list[int] or lsit[string], optional): List of columns to keep from the full dataset
+        transformed (bool, optional): Whether to use a PowerTransformed version of the dataset
 
-    Returns
-    -------
-        data : tuple
-            A tuple containing the filtered train- and test-data and -labels
+    Returns:
+        data (tuple): A tuple containing train- and test-data and -labels
     """
     ## Data loading and prep
-    if stratified:
-        traind, trainl, testd, testl = 'cic_train_data_stratified', 'cic_train_labels_stratified', 'cic_test_data_stratified', 'cic_test_labels_stratified'
+    if transformed:
+        traind, trainl, testd, testl = 'cic_train_data_rand_yj', 'cic_train_labels_rand_yj', 'cic_test_data_rand_yj', 'cic_test_labels_rand_yj'
     else:
-        traind, trainl, testd, testl = 'cic_train_data_randomized', 'cic_train_labels_randomized', 'cic_test_data_randomized', 'cic_test_labels_randomized'
-
+        traind, trainl, testd, testl = 'cic_train_data_rand', 'cic_train_labels_rand', 'cic_test_data_rand', 'cic_test_labels_rand'
     # As we've pickled the encoded dataset,
     # we only need to load these pickles to get the Pandas DataFrames back.
     cic_train_data = dataset_tools.load_df(traind, CIC_FOLDER_PATH)
@@ -80,24 +42,20 @@ def _load_cic(columns, stratified=True):
     cic_test_data = dataset_tools.load_df(testd, CIC_FOLDER_PATH)
     cic_test_labels = dataset_tools.load_df(testl, CIC_FOLDER_PATH)
 
-    if isinstance(columns[0], int):
-        cic_train_data = cic_train_data.iloc[:, list(columns)]
-        cic_test_data = cic_test_data.iloc[:, list(columns)]
-    elif isinstance(columns[0], str):
-        cic_train_data = cic_train_data.filter(columns)
-        cic_test_data = cic_test_data.filter(columns)
+    if columns is not None:
+        if isinstance(columns[0], int):
+            cic_train_data = cic_train_data.iloc[:, list(columns)]
+            cic_test_data = cic_test_data.iloc[:, list(columns)]
+        elif isinstance(columns[0], str):
+            cic_train_data = cic_train_data.filter(columns)
+            cic_test_data = cic_test_data.filter(columns)
 
     # ### Label translation
     # As we are doing binary classification,
     # we only need to know if the entry is normal/benign (*0*) or malicious (*1*)
-    with open(os.path.join(CIC_FOLDER_PATH, 'cic_label_wordindex.json')) as json_in:
-        data = json.load(json_in)
-        print('Loaded these labels from Tokenization process:')
-        print(data)
-        normal_index = data['benign']
-
+    # Also, by default the encoding starts with BENIGN -> 1
     def translate_to_binary(label_value):
-        return 0 if label_value == normal_index else 1
+        return 0 if label_value == 1 else 1
     translate_to_binary = np.vectorize(translate_to_binary)
 
     cic_train_labels = translate_to_binary(cic_train_labels['label_encoded'].values)
@@ -110,5 +68,3 @@ def _load_cic(columns, stratified=True):
     print("No of test labels:\t", len(cic_test_labels))
 
     return (cic_train_data, cic_test_data, cic_train_labels, cic_test_labels)
-
-

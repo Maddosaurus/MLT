@@ -46,7 +46,7 @@ def test_cic_kfold(monkeypatch):
 
     monkeypatch.setattr(base_runner, 'run_CIC', mock_run_cic)
     parser = run.create_parser()
-    args = parser.parse_args(['--unsupervised', '-k', '2', '--cic16', '--AutoEncoder', '32', '100', '0.2', '0.5', '0.001'])
+    args = parser.parse_args(['--unsupervised', '-k', '2', '--cic20', '--AutoEncoder', '32', '100', '0.2', '0.5', '0.001'])
     run.main(args)
 
 def test_cic_single(monkeypatch):
@@ -59,5 +59,5 @@ def test_cic_single(monkeypatch):
 
     monkeypatch.setattr(base_runner, 'run_CIC', mock_run_cic)
     parser = run.create_parser()
-    args = parser.parse_args(['--unsupervised', '--single', '--cic16', '--AutoEncoder', '32', '100', '0.2', '0.5', '0.001'])
+    args = parser.parse_args(['--unsupervised', '--single', '--cic20', '--AutoEncoder', '32', '100', '0.2', '0.5', '0.001'])
     run.main(args)

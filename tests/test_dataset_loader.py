@@ -65,66 +65,18 @@ def test_nsl16_filter(monkeypatch, target_dir, load_mock_nsl_data, load_mock_nsl
     assert_array_equal(tr_data.columns.values, wanted_fields)
 
 
-def test_cic6_random(monkeypatch, target_dir, load_mock_cic_data, load_mock_cic_labels):
+def test_cic20(monkeypatch, target_dir, load_mock_cic_data, load_mock_cic_labels):
     tr_data = call_cic_filter(
-        CIC.get_CIC_6class_randomized,
+        CIC.get_CIC_Top20,
         monkeypatch, target_dir,
         load_mock_cic_data, load_mock_cic_labels
     )
     wanted_fields = [
-        'flow_duration', 'protocol',
-        'total_fwd_packets', 'total_backward_packets',
-        'flow_packets_per_s', 'destination_port'
-    ]
-
-    assert_array_equal(tr_data.columns.values, wanted_fields)
-
-
-def test_cic6_strat(monkeypatch, target_dir, load_mock_cic_data, load_mock_cic_labels):
-    tr_data = call_cic_filter(
-        CIC.get_CIC_6class_stratified,
-        monkeypatch, target_dir,
-        load_mock_cic_data, load_mock_cic_labels
-    )
-    wanted_fields = [
-        'flow_duration', 'protocol',
-        'total_fwd_packets', 'total_backward_packets',
-        'flow_packets_per_s', 'destination_port'
-    ]
-
-    assert_array_equal(tr_data.columns.values, wanted_fields)
-
-def test_cic16(monkeypatch, target_dir, load_mock_cic_data, load_mock_cic_labels):
-    tr_data = call_cic_filter(
-        CIC.get_CIC_Top16,
-        monkeypatch, target_dir,
-        load_mock_cic_data, load_mock_cic_labels
-    )
-    wanted_fields = [
-        'total_backward_packets', 'bwd_packet_length_max', 'bwd_packet_length_mean', 'flow_iat_mean',
-        'bwd_packets_per_s', 'min_packet_length', 'max_packet_length', 'packet_length_mean',
-        'ece_flag_count','average_packet_size', 'subflow_fwd_bytes', 'subflow_bwd_packets',
-        'subflow_bwd_bytes', 'idle_max', 'idle_min', 'source_ip_o1'
-    ]
-
-    assert_array_equal(tr_data.columns.values, wanted_fields)
-
-
-def test_cic28(monkeypatch, target_dir, load_mock_cic_data, load_mock_cic_labels):
-    tr_data = call_cic_filter(
-        CIC.get_CIC_28class,
-        monkeypatch, target_dir,
-        load_mock_cic_data, load_mock_cic_labels
-    )
-    wanted_fields = [
-        'source_port', 'destination_port', 'protocol', 'total_fwd_packets',
-        'total_backward_packets', 'flow_packets_per_s',
-        'fin_flag_count', 'syn_flag_count', 'rst_flag_count', 'psh_flag_count',
-        'ack_flag_count', 'urg_flag_count', 'cwe_flag_count', 'ece_flag_count',
-        'down_per_up_ratio', 'average_packet_size',
-        'source_ip_o1', 'source_ip_o2', 'source_ip_o3', 'source_ip_o4',
-        'destination_ip_o1', 'destination_ip_o2', 'destination_ip_o3', 'destination_ip_o4',
-        'external_ip_o1', 'external_ip_o2', 'external_ip_o3', 'external_ip_o4'
+        'Flow Duration', 'Total Length of Fwd Packets', 'Total Length of Bwd Packets', 'Fwd Packet Length Max',
+        'Bwd Packet Length Max', 'Bwd Packet Length Mean', 'Bwd Packet Length Std', 'Flow IAT Max',
+        'Fwd IAT Total', 'Fwd IAT Max', 'Max Packet Length', 'Packet Length Mean', 'Packet Length Std',
+        'Packet Length Variance', 'Average Packet Size', 'Avg Bwd Segment Size', 'Subflow Fwd Bytes',
+        'Subflow Bwd Bytes', 'Init_Win_bytes_forward', 'Init_Win_bytes_backward'
     ]
 
     assert_array_equal(tr_data.columns.values, wanted_fields)
@@ -136,16 +88,14 @@ def call_cic_filter(filter_function, monkeypatch, target_dir, load_mock_cic_data
         return target_dir
 
     def ret_df(df_name, df_path):
-        if df_name.endswith('data_randomized') or df_name.endswith('data_stratified'):
+        if df_name.endswith('data_rand') or df_name.endswith('data_stratified'):
             return load_mock_cic_data
-        elif df_name.endswith('labels_randomized') or df_name.endswith('labels_stratified'):
+        elif df_name.endswith('labels_rand') or df_name.endswith('labels_stratified'):
             return load_mock_cic_labels
 
     def mock_os_join(dirpath, filename):
         if 'json' in filename:
             return target_dir + '/cic_label_wordindex.json'
-        elif '.list' in filename:
-            return target_dir + '/cic_top16_indices.list'
         return target_dir
 
     monkeypatch.setattr(dataset_tools, 'load_df', ret_df)

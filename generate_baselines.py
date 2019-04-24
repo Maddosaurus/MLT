@@ -8,6 +8,7 @@ from MLT.tools import prediction_entry as pe
 from MLT.metrics import metrics
 from MLT.datasets import CIC
 from MLT.datasets import NSL
+from MLT.tools import dataset_tools
 
 
 
@@ -18,13 +19,24 @@ def baseline_NSL16():
 
     _baseline_data(train_data, test_data, train_labels, test_labels, result_path)
 
+def baseline_pubCIC20():
+    print("CIC public Baseline")
+    basepath = os.path.join(os.path.dirname(__file__), 'MLT', 'datasets', 'CICIDS2017pub')
+    
+    cic_train_data = dataset_tools.load_df("cic_train_data_rand", basepath)
+    cic_train_labels = dataset_tools.load_df("cic_train_labels_rand", basepath)
+    cic_test_data = dataset_tools.load_df("cic_test_data_rand", basepath)
+    cic_test_labels = dataset_tools.load_df("cic_test_labels_rand", basepath)
 
-def baseline_CIC16():
-    print("CIC Baseline")
-    train_data, test_data, train_labels, test_labels = CIC.get_CIC_Top16()
-    result_path = os.path.join(os.path.dirname(__file__), 'MLT', 'datasets', 'CICIDS2017')
+    # Label encoding
+    # BENIGN has 1, all attacks are > 1! A bit weird to read, though
+    def translate_to_binary(label_value):
+            return 0 if label_value == 1 else 1
+    translate_to_binary = np.vectorize(translate_to_binary)
+    cic_train_labels = translate_to_binary(cic_train_labels['labels_encoded'].values)
+    cic_test_labels = translate_to_binary(cic_test_labels['labels_encoded'].values)
 
-    _baseline_data(train_data, test_data, train_labels, test_labels, result_path)
+    _baseline_data(cic_train_data, cic_test_data, cic_train_labels, cic_test_labels, basepath)
 
 
 def _baseline_data(train_data, test_data, train_labels, test_labels, result_path):
@@ -53,4 +65,4 @@ def _gen_single_pe(labels):
 
 if __name__ == '__main__':
     baseline_NSL16()
-    baseline_CIC16()
+    baseline_pubCIC20()

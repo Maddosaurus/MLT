@@ -52,8 +52,9 @@ def _create_model(
         hidden_neurons=None, hidden_activation='relu', output_activation='sigmoid',
         optimizer='adam', epochs=100, batch_size=32, dropout_rate=0.2,
         l2_regularizer=0.1, validation_size=0.1, preprocessing=True,
-        verbose=2, random_state=42, contamination=0.1):
+        verbose=2, random_state=42, contamination=0.1, loss='binary_crossentropy'):
     """(Internal helper) Created an Autoencoder instance"""
+    print("Creating an Autoencoder with\nOutput Activation: {}\nLoss: {}\nOptimizer: {}".format(output_activation, loss, optimizer))
 
     autoenc = AutoEncoder(
         hidden_neurons=hidden_neurons,

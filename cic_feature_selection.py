@@ -7,7 +7,7 @@ import pandas as pd
 sys.path.insert(0, os.path.abspath('./MLT'))
 from MLT.tools import dataset_tools
 
-CIC_FOLDER_PATH = (os.path.join(os.path.dirname(__file__), 'MLT', 'datasets', 'CICIDS2017'))
+CIC_FOLDER_PATH = (os.path.join(os.path.dirname(__file__), 'MLT', 'datasets', 'CICIDS2017pub'))
 
 def cic_select_features_f_classif():
 
@@ -55,7 +55,7 @@ def cic_select_features_f_classif():
 def cic_select_features():
 
 
-    traind, trainl, testd, testl = 'cic_train_data_randomized', 'cic_train_labels_randomized', 'cic_test_data_randomized', 'cic_test_labels_randomized'
+    traind, trainl, testd, testl = 'cic_train_data_rand', 'cic_train_labels_rand', 'cic_test_data_rand', 'cic_test_labels_rand'
     cic_train_data = dataset_tools.load_df(traind, CIC_FOLDER_PATH)
     cic_train_labels = dataset_tools.load_df(trainl, CIC_FOLDER_PATH)
     cic_test_data = dataset_tools.load_df(testd, CIC_FOLDER_PATH)
@@ -69,11 +69,7 @@ def cic_select_features():
     pd.options.display.max_rows = 500
     pd.options.display.max_columns = 500
 
-    # drop label, flow_id and timestamp, as they break the selection mechanism and won't be needed
-    cic_data.drop(['flow_id', 'timestamp'], axis=1, inplace=True)
-    cic_labels.drop(['label'], axis=1, inplace=True)
-
-    print(cic_data.head())
+    print(cic_data.columns.values)
     print("Column count original: {}".format(len(cic_data.columns.values)))
 
     selector = SelectKBest(mutual_info_classif, k=16)
