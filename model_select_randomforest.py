@@ -25,7 +25,7 @@ def main():
     MLT.run.main(args)
     
     parser = MLT.run.create_parser()
-    args = parser.parse_args(['-k', '10', '--nsl16', '--RandomForest', '200', '0', '--mail'])
+    args = parser.parse_args(['-k', '10', '--nsl16', '--RandomForest', '200', '0'])
     MLT.run.main(args)
     
     ####
@@ -47,7 +47,7 @@ def main():
     MLT.run.main(args)
     
     parser = MLT.run.create_parser()
-    args = parser.parse_args(['-k', '10', '--nsl16', '--RandomForest', '200', '10', '--mail'])
+    args = parser.parse_args(['-k', '10', '--nsl16', '--RandomForest', '200', '10'])
     MLT.run.main(args)
 
     ####
@@ -69,7 +69,7 @@ def main():
     MLT.run.main(args)
     
     parser = MLT.run.create_parser()
-    args = parser.parse_args(['-k', '10', '--nsl16', '--RandomForest', '200', '100', '--mail'])
+    args = parser.parse_args(['-k', '10', '--nsl16', '--RandomForest', '200', '100'])
     MLT.run.main(args)
 
 
@@ -94,7 +94,7 @@ def main():
     MLT.run.main(args)
     
     parser = MLT.run.create_parser()
-    args = parser.parse_args(['-k', '10', '--CICt', '--RandomForest', '200', '0', '--mail'])
+    args = parser.parse_args(['-k', '10', '--CICt', '--RandomForest', '200', '0')
     MLT.run.main(args)
     
     ####
@@ -116,7 +116,7 @@ def main():
     MLT.run.main(args)
     
     parser = MLT.run.create_parser()
-    args = parser.parse_args(['-k', '10', '--CICt', '--RandomForest', '200', '10', '--mail'])
+    args = parser.parse_args(['-k', '10', '--CICt', '--RandomForest', '200', '10',])
     MLT.run.main(args)
 
     ####
