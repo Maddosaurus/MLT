@@ -2,6 +2,7 @@
 import os
 import warnings
 import json
+import numpy as np
 from sklearn.model_selection import KFold
 
 from MLT.implementations import Autoencoder, HBOS, IsolationForest, LSTM_2_Multiclass, RandomForest, XGBoost
@@ -61,12 +62,13 @@ def run_benchmark(candidate_data, candidate_labels, result_path, model_savepath,
 
         fold_train_data, fold_test_data, fold_train_labels, fold_test_labels = candidate_data[train], candidate_data[test], candidate_labels[train], candidate_labels[test]
 
-        if args.unsupervised:
-            fold_train_labels = None # Pass empty train labels
-        
-        outliers_fraction = np.count_nonzero(train_labels) / len(train_labels)
+        outliers_fraction = np.count_nonzero(fold_train_labels) / len(fold_train_labels)
         outliers_percentage = round(outliers_fraction * 100, ndigits=4)
         print("Outlier Percentage:", outliers_percentage)
+
+        if args.unsupervised:
+            fold_train_labels = None # Pass empty train labels
+
 
         # now fit the models
         print('\nBeginning training pass {:2d}/{}'.format(fold_counter, kfold_count))
