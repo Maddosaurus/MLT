@@ -17,7 +17,7 @@ def main():
                 arguments = [
                     '--unsupervised',
                     '-k', '10',
-                    '--cic16', '--hbos',
+                    '--CICt', '--hbos',
                     '{:n}'.format(n_bins),
                     '{:2.1f}'.format(alpha),
                     '{:2.1f}'.format(tol)
