@@ -63,6 +63,10 @@ def run_benchmark(candidate_data, candidate_labels, result_path, model_savepath,
 
         if args.unsupervised:
             fold_train_labels = None # Pass empty train labels
+        
+        outliers_fraction = np.count_nonzero(train_labels) / len(train_labels)
+        outliers_percentage = round(outliers_fraction * 100, ndigits=4)
+        print("Outlier Percentage:", outliers_percentage)
 
         # now fit the models
         print('\nBeginning training pass {:2d}/{}'.format(fold_counter, kfold_count))
@@ -120,7 +124,7 @@ def run_benchmark(candidate_data, candidate_labels, result_path, model_savepath,
                 withHBOS[0], # n_bins
                 withHBOS[1], # alpha
                 withHBOS[2], # tol
-                withHBOS[3], # contamination
+                outliers_fraction, # contamination
                 fold_train_data,
                 fold_train_labels,
                 fold_test_data,
