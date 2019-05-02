@@ -15,7 +15,7 @@ def main():
     # MLT.run.main(args)
 
     # parser = MLT.run.create_parser()
-    # args = parser.parse_args(['-k', '10', '--nsl16', '--XGBoost', '100', '10', '0.1'])
+    # args = parser.parse_args(['-k', '10', '--nsl16', '--XGBoost', '100', '10', '0.1']) # <--- Winner!
     # MLT.run.main(args)
 
     # parser = MLT.run.create_parser()
@@ -28,24 +28,42 @@ def main():
 
 
     # estimators with max_depth = 10
-    parser = MLT.run.create_parser()
-    args = parser.parse_args(['-k', '10', '--nsl16', '--XGBoost', '50', '10', '0.1'])
-    MLT.run.main(args)
+    # parser = MLT.run.create_parser()
+    # args = parser.parse_args(['-k', '10', '--nsl16', '--XGBoost', '50', '10', '0.1'])
+    # MLT.run.main(args)
     
-    parser = MLT.run.create_parser()
-    args = parser.parse_args(['-k', '10', '--nsl16', '--XGBoost', '100', '10', '0.1'])
-    MLT.run.main(args)
+    # parser = MLT.run.create_parser()
+    # args = parser.parse_args(['-k', '10', '--nsl16', '--XGBoost', '100', '10', '0.1'])
+    # MLT.run.main(args)
 
+    # parser = MLT.run.create_parser()
+    # args = parser.parse_args(['-k', '10', '--nsl16', '--XGBoost', '150', '10', '0.1']) # <--- Winner!
+    # MLT.run.main(args)
+
+    # parser = MLT.run.create_parser()
+    # args = parser.parse_args(['-k', '10', '--nsl16', '--XGBoost', '200', '10', '0.1'])
+    # MLT.run.main(args)
+
+    # parser = MLT.run.create_parser()
+    # args = parser.parse_args(['-k', '10', '--nsl16', '--XGBoost', '500', '10', '0.1'])
+    # MLT.run.main(args)
+
+
+    # learn rate with max_depth = 10 and n_estimators = 150 
     parser = MLT.run.create_parser()
     args = parser.parse_args(['-k', '10', '--nsl16', '--XGBoost', '150', '10', '0.1'])
     MLT.run.main(args)
 
     parser = MLT.run.create_parser()
-    args = parser.parse_args(['-k', '10', '--nsl16', '--XGBoost', '200', '10', '0.1'])
+    args = parser.parse_args(['-k', '10', '--nsl16', '--XGBoost', '150', '10', '0.01'])
     MLT.run.main(args)
 
     parser = MLT.run.create_parser()
-    args = parser.parse_args(['-k', '10', '--nsl16', '--XGBoost', '500', '10', '0.1'])
+    args = parser.parse_args(['-k', '10', '--nsl16', '--XGBoost', '150', '10', '0.001'])
+    MLT.run.main(args)
+
+    parser = MLT.run.create_parser()
+    args = parser.parse_args(['-k', '10', '--nsl16', '--XGBoost', '150', '10', '0.0001'])
     MLT.run.main(args)
 
 
