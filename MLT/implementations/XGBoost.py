@@ -35,7 +35,7 @@ def _create_model(n_estimators=100, max_depth=3, learning_rate=0.1):
         max_depth=max_depth,
         n_estimators=n_estimators,
         learning_rate=learning_rate,
-        n_jobs=-1,                      # Set number of jobs = CPU cores
+        n_jobs=4,                       # Set fix n_jobs of 4 as -1 doesn't always work
         random_state=0                  # Fixed init state
     )
 
