@@ -10,20 +10,42 @@ def main():
     # estimators max_depth lr
 
     # max_depth
-    parser = MLT.run.create_parser()
-    args = parser.parse_args(['-k', '10', '--CICt', '--XGBoost', '100', '3', '0.1'])
-    MLT.run.main(args)
+    # parser = MLT.run.create_parser()
+    # args = parser.parse_args(['-k', '10', '--CICt', '--XGBoost', '100', '3', '0.1'])
+    # MLT.run.main(args)
 
+    # parser = MLT.run.create_parser()
+    # args = parser.parse_args(['-k', '10', '--CICt', '--XGBoost', '100', '10', '0.1']) # <-- Winner!
+    # MLT.run.main(args)
+
+    # parser = MLT.run.create_parser()
+    # args = parser.parse_args(['-k', '10', '--CICt', '--XGBoost', '100', '50', '0.1'])
+    # MLT.run.main(args)
+
+    # parser = MLT.run.create_parser()
+    # args = parser.parse_args(['-k', '10', '--CICt', '--XGBoost', '100', '100', '0.1', '--mail'])
+    # MLT.run.main(args)
+
+
+    # estimators with max_depth = 10
+    parser = MLT.run.create_parser()
+    args = parser.parse_args(['-k', '10', '--CICt', '--XGBoost', '50', '10', '0.1'])
+    MLT.run.main(args)
+    
     parser = MLT.run.create_parser()
     args = parser.parse_args(['-k', '10', '--CICt', '--XGBoost', '100', '10', '0.1'])
     MLT.run.main(args)
 
     parser = MLT.run.create_parser()
-    args = parser.parse_args(['-k', '10', '--CICt', '--XGBoost', '100', '50', '0.1'])
+    args = parser.parse_args(['-k', '10', '--CICt', '--XGBoost', '150', '10', '0.1'])
     MLT.run.main(args)
 
     parser = MLT.run.create_parser()
-    args = parser.parse_args(['-k', '10', '--CICt', '--XGBoost', '100', '100', '0.1', '--mail'])
+    args = parser.parse_args(['-k', '10', '--CICt', '--XGBoost', '200', '10', '0.1'])
+    MLT.run.main(args)
+
+    parser = MLT.run.create_parser()
+    args = parser.parse_args(['-k', '10', '--CICt', '--XGBoost', '500', '10', '0.1', '--mail'])
     MLT.run.main(args)
 
 
