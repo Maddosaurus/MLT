@@ -22,7 +22,7 @@ def main():
                     '{:2.1f}'.format(alpha),
                     '{:2.1f}'.format(tol)
                 ]
-                if n_bins == 150 and alpha == 0.8 and tol == 0.8:
+                if n_bins == 150 and alpha >= 0.8 and tol >= 0.8:
                     # on the last run, send a mail
                     arguments.append('--mail')
 
