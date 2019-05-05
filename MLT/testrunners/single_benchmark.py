@@ -115,7 +115,7 @@ def run_benchmark(train_data, train_labels, test_data, test_labels, result_path,
             withHBOS[0], # n_bins
             withHBOS[1], # alpha
             withHBOS[2], # tol
-            outliers_fraction, # contamination
+            withHBOS[3], # contamination
             train_data,
             train_labels,
             test_data,
