@@ -126,7 +126,7 @@ def run_benchmark(candidate_data, candidate_labels, result_path, model_savepath,
                 withHBOS[0], # n_bins
                 withHBOS[1], # alpha
                 withHBOS[2], # tol
-                outliers_fraction, # contamination
+                withHBOS[3], # contamination
                 fold_train_data,
                 fold_train_labels,
                 fold_test_data,
