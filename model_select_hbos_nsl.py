@@ -11,7 +11,7 @@ def main():
 
     parser = MLT.run.create_parser()
 
-    for n_bins in range(1, 151, 5):
+    for n_bins in range(5, 151, 5):
         for alpha in numpy.arange(0.1, 1.0, 0.2):
             for tol in numpy.arange(0.1, 1.0, 0.2):
                 arguments = [
