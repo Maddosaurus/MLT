@@ -48,7 +48,7 @@ def main():
 
     # max_features
     parser = MLT.run.create_parser()
-    args = parser.parse_args(['--unsupervised', '-k', '10', '--nsl16', '--IsolationForest', '100', '0.1', 'True'])
+    args = parser.parse_args(['--unsupervised', '-k', '10', '--nsl16', '--IsolationForest', '400', '0.1', 'True'])
     MLT.run.main(args)
 
     parser = MLT.run.create_parser()
