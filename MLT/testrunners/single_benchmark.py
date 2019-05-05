@@ -115,7 +115,7 @@ def run_benchmark(train_data, train_labels, test_data, test_labels, result_path,
             withHBOS[0], # n_bins
             withHBOS[1], # alpha
             withHBOS[2], # tol
-            withHBOS[3], # contamination
+            outliers_fraction, # contamination
             train_data,
             train_labels,
             test_data,
@@ -136,8 +136,8 @@ def run_benchmark(train_data, train_labels, test_data, test_labels, result_path,
             batch_size=withAutoEnc[0],    # batch
             epochs=withAutoEnc[1],        # epochs
             dropout_rate=withAutoEnc[2],  # dropout_rate
-            contamination=withAutoEnc[3], # contamination
-            learning_rate=withAutoEnc[4]  # learning rate
+            contamination=outliers_fraction, # contamination
+            learning_rate=withAutoEnc[3]  # learning rate
         )
         autoenc_stats.append(auoenc_pass)
 
@@ -151,9 +151,9 @@ def run_benchmark(train_data, train_labels, test_data, test_labels, result_path,
             test_labels,
             full_filename,
             n_estimators=withIForest[0],
-            contamination=withIForest[1],
-            max_features=withIForest[2],
-            bootstrap=withIForest[3]
+            contamination=outliers_fraction,
+            max_features=withIForest[1],
+            bootstrap=withIForest[2]
         )
         iforest_stats.append(iforest_pass)
 

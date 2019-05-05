@@ -72,4 +72,6 @@ def _create_model(
         contamination=contamination
     )
 
+    print('Created Model: {}'.format(autoenc))
+
     return autoenc

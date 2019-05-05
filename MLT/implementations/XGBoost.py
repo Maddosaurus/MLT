@@ -39,4 +39,6 @@ def _create_model(n_estimators=100, max_depth=3, learning_rate=0.1):
         random_state=0                  # Fixed init state
     )
 
+    print('Created Model: {}'.format(xgb))
+
     return xgb

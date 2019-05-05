@@ -43,4 +43,6 @@ def _create_model(n_estimators=100, contamination=0.1, max_features=1.0, bootstr
         verbose=verbose,
     )
 
+    print('Created Model: {}'.format(forest))
+
     return forest
