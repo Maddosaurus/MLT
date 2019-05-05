@@ -17,7 +17,7 @@ def main():
 
     # AutoEncoder
     parser = MLT.run.create_parser()
-    args = parser.parse_args(['--unsupervised', '--single', '--nsl16', '--AutoEncoder', '512', '100', '0.2', '0.5', '0.1'])
+    args = parser.parse_args(['--unsupervised', '--single', '--nsl16', '--AutoEncoder', '512', '100', '0.2', '0.4654', '0.1'])
     MLT.run.main(args)
 
     # XGBOD
