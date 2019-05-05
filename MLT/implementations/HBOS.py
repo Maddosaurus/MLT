@@ -37,4 +37,6 @@ def _create_model(n_bins=10, alpha=0.1, tol=0.1, contamination=0.1):
         contamination=contamination
     )
 
+    print('Created Model: {}'.format(hbos))
+
     return hbos

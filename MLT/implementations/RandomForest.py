@@ -40,4 +40,7 @@ def _createModel(n_estimators=100, max_depth=None):
         random_state=0,             # Fixed init state
         n_jobs=-1,                  # Set number of jobs = CPU cores
     )
+
+    print('Created Model: {}'.format(rf))
+
     return rf
