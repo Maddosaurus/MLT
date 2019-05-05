@@ -10,47 +10,39 @@ def main():
 
     # Estimators
     parser = MLT.run.create_parser()
-    args = parser.parse_args(['--unsupervised', '-k', '10', '--nsl16', '--IsolationForest', '10', '1.0', 'True'])
-    MLT.run.main(args)
-
-    parser = MLT.run.create_parser()
-    args = parser.parse_args(['--unsupervised', '-k', '10', '--nsl16', '--IsolationForest', '20', '1.0', 'True'])
-    MLT.run.main(args)
-
-    parser = MLT.run.create_parser()
-    args = parser.parse_args(['--unsupervised', '-k', '10', '--nsl16', '--IsolationForest', '40', '1.0', 'True'])
-    MLT.run.main(args)
-
-    parser = MLT.run.create_parser()
-    args = parser.parse_args(['--unsupervised', '-k', '10', '--nsl16', '--IsolationForest', '60', '1.0', 'True'])
-    MLT.run.main(args)
-
-    parser = MLT.run.create_parser()
-    args = parser.parse_args(['--unsupervised', '-k', '10', '--nsl16', '--IsolationForest', '80', '1.0', 'True'])
-    MLT.run.main(args)
-
-    parser = MLT.run.create_parser()
     args = parser.parse_args(['--unsupervised', '-k', '10', '--nsl16', '--IsolationForest', '100', '1.0', 'True'])
     MLT.run.main(args)
 
     parser = MLT.run.create_parser()
-    args = parser.parse_args(['--unsupervised', '-k', '10', '--nsl16', '--IsolationForest', '120', '1.0', 'True'])
+    args = parser.parse_args(['--unsupervised', '-k', '10', '--nsl16', '--IsolationForest', '150', '1.0', 'True'])
     MLT.run.main(args)
 
     parser = MLT.run.create_parser()
-    args = parser.parse_args(['--unsupervised', '-k', '10', '--nsl16', '--IsolationForest', '140', '1.0', 'True'])
+    args = parser.parse_args(['--unsupervised', '-k', '10', '--nsl16', '--IsolationForest', '200', '1.0', 'True'])
     MLT.run.main(args)
 
     parser = MLT.run.create_parser()
-    args = parser.parse_args(['--unsupervised', '-k', '10', '--nsl16', '--IsolationForest', '160', '1.0', 'True'])
+    args = parser.parse_args(['--unsupervised', '-k', '10', '--nsl16', '--IsolationForest', '250', '1.0', 'True'])
     MLT.run.main(args)
 
     parser = MLT.run.create_parser()
-    args = parser.parse_args(['--unsupervised', '-k', '10', '--nsl16', '--IsolationForest', '180', '1.0', 'True'])
+    args = parser.parse_args(['--unsupervised', '-k', '10', '--nsl16', '--IsolationForest', '300', '1.0', 'True'])
     MLT.run.main(args)
 
     parser = MLT.run.create_parser()
-    args = parser.parse_args(['--unsupervised', '-k', '10', '--nsl16', '--IsolationForest', '200', '1.0', 'True', '--mail'])
+    args = parser.parse_args(['--unsupervised', '-k', '10', '--nsl16', '--IsolationForest', '350', '1.0', 'True'])
+    MLT.run.main(args)
+
+    parser = MLT.run.create_parser()
+    args = parser.parse_args(['--unsupervised', '-k', '10', '--nsl16', '--IsolationForest', '400', '1.0', 'True'])
+    MLT.run.main(args)
+
+    parser = MLT.run.create_parser()
+    args = parser.parse_args(['--unsupervised', '-k', '10', '--nsl16', '--IsolationForest', '450', '1.0', 'True'])
+    MLT.run.main(args)
+
+    parser = MLT.run.create_parser()
+    args = parser.parse_args(['--unsupervised', '-k', '10', '--nsl16', '--IsolationForest', '500', '1.0', 'True', '--mail'])
     MLT.run.main(args)
 
 
