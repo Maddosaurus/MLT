@@ -19,52 +19,56 @@ def main():
     args = parser.parse_args(['--unsupervised', '-k', '10', '--nsl16', '--AutoEncoder', '512', '100', '0.2', '0.001'])
     MLT.run.main(args)
 
-    # Epochs
     parser = MLT.run.create_parser()
-    args = parser.parse_args(['--unsupervised', '-k', '10', '--nsl16', '--AutoEncoder', '512', '10', '0.2', '0.001'])
+    args = parser.parse_args(['--unsupervised', '-k', '10', '--nsl16', '--AutoEncoder', '1024', '100', '0.2', '0.001'])
     MLT.run.main(args)
 
-    parser = MLT.run.create_parser()
-    args = parser.parse_args(['--unsupervised', '-k', '10', '--nsl16', '--AutoEncoder', '512', '20', '0.2', '0.001'])
-    MLT.run.main(args)
+    # # Epochs
+    # parser = MLT.run.create_parser()
+    # args = parser.parse_args(['--unsupervised', '-k', '10', '--nsl16', '--AutoEncoder', '512', '10', '0.2', '0.001'])
+    # MLT.run.main(args)
 
-    parser = MLT.run.create_parser()
-    args = parser.parse_args(['--unsupervised', '-k', '10', '--nsl16', '--AutoEncoder', '512', '50', '0.2', '0.001'])
-    MLT.run.main(args)
+    # parser = MLT.run.create_parser()
+    # args = parser.parse_args(['--unsupervised', '-k', '10', '--nsl16', '--AutoEncoder', '512', '20', '0.2', '0.001'])
+    # MLT.run.main(args)
 
-    parser = MLT.run.create_parser()
-    args = parser.parse_args(['--unsupervised', '-k', '10', '--nsl16', '--AutoEncoder', '512', '150', '0.2', '0.001'])
-    MLT.run.main(args)
+    # parser = MLT.run.create_parser()
+    # args = parser.parse_args(['--unsupervised', '-k', '10', '--nsl16', '--AutoEncoder', '512', '50', '0.2', '0.001'])
+    # MLT.run.main(args)
 
-    parser = MLT.run.create_parser()
-    args = parser.parse_args(['--unsupervised', '-k', '10', '--nsl16', '--AutoEncoder', '512', '200', '0.2', '0.001'])
-    MLT.run.main(args)
+    # parser = MLT.run.create_parser()
+    # args = parser.parse_args(['--unsupervised', '-k', '10', '--nsl16', '--AutoEncoder', '512', '150', '0.2', '0.001'])
+    # MLT.run.main(args)
 
-    # Dropout
-    parser = MLT.run.create_parser()
-    args = parser.parse_args(['--unsupervised', '-k', '10', '--nsl16', '--AutoEncoder', '512', '100', '0.1', '0.001'])
-    MLT.run.main(args)
+    # parser = MLT.run.create_parser()
+    # args = parser.parse_args(['--unsupervised', '-k', '10', '--nsl16', '--AutoEncoder', '512', '200', '0.2', '0.001'])
+    # MLT.run.main(args)
 
-    parser = MLT.run.create_parser()
-    args = parser.parse_args(['--unsupervised', '-k', '10', '--nsl16', '--AutoEncoder', '512', '100', '0.4', '0.001'])
-    MLT.run.main(args)
+    # # Dropout
+    # parser = MLT.run.create_parser()
+    # args = parser.parse_args(['--unsupervised', '-k', '10', '--nsl16', '--AutoEncoder', '512', '100', '0.1', '0.001'])
+    # MLT.run.main(args)
 
-    parser = MLT.run.create_parser()
-    args = parser.parse_args(['--unsupervised', '-k', '10', '--nsl16', '--AutoEncoder', '512', '100', '0.6', '0.001'])
-    MLT.run.main(args)
+    # parser = MLT.run.create_parser()
+    # args = parser.parse_args(['--unsupervised', '-k', '10', '--nsl16', '--AutoEncoder', '512', '100', '0.4', '0.001'])
+    # MLT.run.main(args)
 
-    parser = MLT.run.create_parser()
-    args = parser.parse_args(['--unsupervised', '-k', '10', '--nsl16', '--AutoEncoder', '512', '100', '0.8', '0.001'])
-    MLT.run.main(args)
+    # parser = MLT.run.create_parser()
+    # args = parser.parse_args(['--unsupervised', '-k', '10', '--nsl16', '--AutoEncoder', '512', '100', '0.6', '0.001'])
+    # MLT.run.main(args)
 
-    # Learning Rate
-    parser = MLT.run.create_parser()
-    args = parser.parse_args(['--unsupervised', '-k', '10', '--nsl16', '--AutoEncoder', '512', '100', '0.2', '0.0001'])
-    MLT.run.main(args)
+    # parser = MLT.run.create_parser()
+    # args = parser.parse_args(['--unsupervised', '-k', '10', '--nsl16', '--AutoEncoder', '512', '100', '0.8', '0.001'])
+    # MLT.run.main(args)
 
-    parser = MLT.run.create_parser()
-    args = parser.parse_args(['--unsupervised', '-k', '10', '--nsl16', '--AutoEncoder', '512', '100', '0.2', '0.001'])
-    MLT.run.main(args)
+    # # Learning Rate
+    # parser = MLT.run.create_parser()
+    # args = parser.parse_args(['--unsupervised', '-k', '10', '--nsl16', '--AutoEncoder', '512', '100', '0.2', '0.0001'])
+    # MLT.run.main(args)
+
+    # parser = MLT.run.create_parser()
+    # args = parser.parse_args(['--unsupervised', '-k', '10', '--nsl16', '--AutoEncoder', '512', '100', '0.2', '0.001'])
+    # MLT.run.main(args)
 
     parser = MLT.run.create_parser()
     args = parser.parse_args(['--unsupervised', '-k', '10', '--nsl16', '--AutoEncoder', '512', '100', '0.2', '0.01'])
