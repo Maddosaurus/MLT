@@ -11,9 +11,9 @@ def main():
 
     parser = MLT.run.create_parser()
 
-    for n_bins in range(145, 151, 5):
-        for alpha in numpy.arange(0.1, 1.0, 0.2):
-            for tol in numpy.arange(0.1, 1.0, 0.2):
+    for n_bins in range(2, 31):
+        for alpha in numpy.arange(0.1, 1.0, 0.1):
+            for tol in numpy.arange(0.1, 1.0, 0.1):
                 arguments = [
                     '--unsupervised',
                     '-k', '10',
@@ -22,7 +22,7 @@ def main():
                     '{:2.1f}'.format(alpha),
                     '{:2.1f}'.format(tol)
                 ]
-                if n_bins == 150 and alpha >= 0.8 and tol >= 0.8:
+                if n_bins == 30 and alpha == 0.9 and tol == 0.9:
                     # on the last run, send a mail
                     arguments.append('--mail')
 
