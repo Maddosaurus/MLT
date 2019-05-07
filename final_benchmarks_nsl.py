@@ -7,17 +7,17 @@ import MLT.run
 def main():
     # Isolation Forest
     parser = MLT.run.create_parser()
-    args = parser.parse_args(['--unsupervised', '--single', '--nsl16', '--IsolationForest', '100', '0.4654', '0.1', 'True'])
+    args = parser.parse_args(['--unsupervised', '--single', '--nsl16', '--IsolationForest', '100', '0.1', 'True'])
     MLT.run.main(args)
 
     # HBOS
     parser = MLT.run.create_parser()
-    args = parser.parse_args(['--unsupervised', '--single', '--nsl16', '--HBOS', '2', '0.3', '0.2', '0.4654'])
+    args = parser.parse_args(['--unsupervised', '--single', '--nsl16', '--HBOS', '27', '0.6', '0.1'])
     MLT.run.main(args)
 
     # AutoEncoder
     parser = MLT.run.create_parser()
-    args = parser.parse_args(['--unsupervised', '--single', '--nsl16', '--AutoEncoder', '512', '100', '0.2', '0.4654', '0.1'])
+    args = parser.parse_args(['--unsupervised', '--single', '--nsl16', '--AutoEncoder', '512', '100', '0.2', '0.001'])
     MLT.run.main(args)
 
     # XGBOD
