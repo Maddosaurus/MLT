@@ -114,6 +114,9 @@ def run_Splunk(args):
     if args.Splunk:
         runnername = "splunk"
         train_data, test_data, train_labels, test_labels = Splunk.get_splunk_full()
+    elif args.SplunkR:
+        runnername = "splunk_rand"
+        train_data, test_data, train_labels, test_labels = Splunk.get_splunk_full_random()
 
     if args.SingleBenchmark:
         runnername += "_single"

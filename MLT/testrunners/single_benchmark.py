@@ -59,6 +59,14 @@ def run_benchmark(train_data, train_labels, test_data, test_labels, result_path,
     outliers_percentage = round(outliers_fraction * 100, ndigits=4)
     print("Outlier Percentage:", outliers_percentage)
 
+    if args.anomaly:
+        print("Anomaly/Novelty mode! Dropping all attacks from training partition.")
+        before = dict(zip(*np.unique(train_labels, return_counts=True)))
+        print("Before:\n\tLabel Count: {}\n\tEntry Count: {}".format(before, len(train_data)))
+        train_data = train_data[train_labels != 1]
+        train_labels = train_labels[train_labels != 1]
+        print("Entry Count After: {}".format(len(train_data)))
+
     if args.unsupervised:
         train_labels = None # Pass empty train labels
 

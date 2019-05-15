@@ -78,7 +78,7 @@ def main(args=None):
         full_resultpath = base_runner.run_NSL(args)
     if (args.CIC20 or args.CIC or args.CICt):
         full_resultpath = base_runner.run_CIC(args)
-    if args.Splunk:
+    if (args.Splunk or args.SplunkR):
         full_resultpath = base_runner.run_Splunk(args)
 
 
@@ -101,6 +101,7 @@ def create_parser():
     bmark.add_argument('--kfolds', '-k', type=int, default=3, help='Number of folds for validation. Default 3')
     bmark.add_argument('--SingleBenchmark', '--single', action='store_true', help='Used to run a single pass of the benchmark without k-fold CV')
     bmark.add_argument('--unsupervised', '-u', action='store_true', help='Run Benchmark in unsupervised learning mode')
+    bmark.add_argument('--anomaly', '-a', action='store_true', help='Drop all Anomalies from training partitions')
 
     # dataset utils
     dsutils = parser.add_argument_group('Dataset Preparations and Utilities')
