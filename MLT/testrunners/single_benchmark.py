@@ -55,7 +55,7 @@ def run_benchmark(train_data, train_labels, test_data, test_labels, result_path,
     autoenc_stats       = []
     iforest_stats       = []
 
-    outliers_fraction = np.count_nonzero(train_labels) / len(train_labels)
+    outliers_fraction = np.count_nonzero(test_labels) / len(test_labels)
     outliers_percentage = round(outliers_fraction * 100, ndigits=4)
     print("Outlier Percentage:", outliers_percentage)
 

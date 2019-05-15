@@ -3,6 +3,7 @@ import os
 
 from MLT.datasets import NSL
 from MLT.datasets import CIC
+from MLT.datasets import Splunk
 from MLT.tools import toolbelt
 from MLT.testrunners import single_benchmark, kfold_runner
 
@@ -96,5 +97,48 @@ def run_CIC(args):
     elif args.kfolds:
         return kfold_runner.run_benchmark(
             cic_train_data, cic_train_labels,
+            result_path, model_savepath, args
+        )
+
+
+
+def run_Splunk(args):
+    """Run the benchmark for the custom Splunk dataset.
+
+    Args:
+        args (argparse.Namespace): Argument Namespace containing all parameters for the test run
+
+    Returns:
+        result_path (string): Full path where the results can be found
+    """
+    if args.Splunk:
+        runnername = "splunk"
+        train_data, test_data, train_labels, test_labels = Splunk.get_splunk_full()
+
+    if args.SingleBenchmark:
+        runnername += "_single"
+    elif args.kfolds:
+        runnername += "_cv"
+
+    result_path = toolbelt.prepare_folders(runnername)
+    model_savepath = os.path.join(result_path, 'models')
+
+    # also, save parameters with which the runner was called
+    toolbelt.write_call_params(args, result_path)
+
+    # convert to numpy.ndarrays
+    train_data = train_data.values
+    test_data = test_data.values
+
+    # and run the benchmark!
+    if args.SingleBenchmark:
+        return single_benchmark.run_benchmark(
+            train_data, train_labels,
+            test_data, test_labels,
+            result_path, model_savepath, args
+        )
+    elif args.kfolds:
+        return kfold_runner.run_benchmark(
+            train_data, train_labels,
             result_path, model_savepath, args
         )

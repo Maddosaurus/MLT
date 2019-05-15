@@ -5,6 +5,7 @@ generate_fb_rocs.py
 # ignore the datasets themselves
 MLT/datasets/NSL_KDD
 MLT/datasets/CICIDS2017*
+MLT/datasets/Splunk
 
 # ignore results
 results/
