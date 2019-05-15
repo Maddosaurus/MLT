@@ -78,6 +78,8 @@ def main(args=None):
         full_resultpath = base_runner.run_NSL(args)
     if (args.CIC20 or args.CIC or args.CICt):
         full_resultpath = base_runner.run_CIC(args)
+    if (args.Splunk or args.SplunkR):
+        full_resultpath = base_runner.run_Splunk(args)
 
 
     # wrap up
@@ -99,6 +101,7 @@ def create_parser():
     bmark.add_argument('--kfolds', '-k', type=int, default=3, help='Number of folds for validation. Default 3')
     bmark.add_argument('--SingleBenchmark', '--single', action='store_true', help='Used to run a single pass of the benchmark without k-fold CV')
     bmark.add_argument('--unsupervised', '-u', action='store_true', help='Run Benchmark in unsupervised learning mode')
+    bmark.add_argument('--anomaly', '-a', action='store_true', help='Drop all Anomalies from training partitions')
 
     # dataset utils
     dsutils = parser.add_argument_group('Dataset Preparations and Utilities')
@@ -112,6 +115,8 @@ def create_parser():
     datasets.add_argument('--CIC20', '--cic20', action='store_true', help='Run benchmarks on public CICIDS2017 with 20 features')
     datasets.add_argument('--CIC', '--cic', action='store_true', help='Run benchmarks on full public CICIDS2017')
     datasets.add_argument('--CICt', '--cict', action='store_true', help='Run benchmarks on pretransformed full public CICIDS2017')
+    datasets.add_argument('--Splunk', '--splunk', action='store_true', help='Run benchmarks on pretransformed full custom SPLUNK dataset')
+    datasets.add_argument('--SplunkR', '--splunkr', action='store_true', help='Run benchmarks on pretransformed full custom SPLUNK dataset')
 
     # implementations
     impls = parser.add_argument_group('Classifier Implementations')

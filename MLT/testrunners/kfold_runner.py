@@ -62,9 +62,17 @@ def run_benchmark(candidate_data, candidate_labels, result_path, model_savepath,
 
         fold_train_data, fold_test_data, fold_train_labels, fold_test_labels = candidate_data[train], candidate_data[test], candidate_labels[train], candidate_labels[test]
 
-        outliers_fraction = np.count_nonzero(fold_train_labels) / len(fold_train_labels)
+        outliers_fraction = np.count_nonzero(fold_test_labels) / len(fold_test_labels)
         outliers_percentage = round(outliers_fraction * 100, ndigits=4)
         print("Outlier Percentage:", outliers_percentage)
+
+        if args.anomaly:
+            print("Anomaly/Novelty mode! Dropping all attacks from training partition.")
+            before = dict(zip(*np.unique(fold_train_labels, return_counts=True)))
+            print("Before:\n\tLabel Count: {}\n\tEntry Count: {}".format(before, len(fold_train_data)))
+            fold_train_data = fold_train_data[fold_train_labels != 1]
+            fold_train_labels = fold_train_labels[fold_train_labels != 1]
+            print("Entry Count After: {}".format(len(fold_train_data)))
 
         if args.unsupervised:
             fold_train_labels = None # Pass empty train labels
