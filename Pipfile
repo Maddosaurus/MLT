@@ -10,7 +10,7 @@ matplotlib = "==3.0.2"
 xgboost = "==0.81"
 Keras = "==2.2.4"
 pyod = "==0.6.5"
-tensorflow = "==1.12.0"
+tensorflow = "==1.15.4"
 natsort = "==5.5.0"
 
 [dev-packages]
